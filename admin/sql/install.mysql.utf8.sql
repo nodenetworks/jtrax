@@ -5,6 +5,6 @@ CREATE TABLE `#__jtrax` (
   `datetime` date NOT NULL,
   `code` varchar(30) NOT NULL,
   `status` varchar(50) NOT NULL,
-  `published` tinyint(4) NOT NULL,
+  `published` tinyint(4) NOT NULL DEFAULT 1,
    PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
