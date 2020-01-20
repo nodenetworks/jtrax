@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fieldset>
+		<field
+			name="id"
+			type="hidden"
+		/>
+		<field
+			name="code"
+			type="text"
+			label="COM_JTRAX_LABEL_CODE"
+			description="COM_JTRAX_DESCRIPTION_CODE"
+			size="10"
+			class="inputbox"
+			default=""
+		/>
+		<field
+			name="status"
+			type="text"
+			label="COM_JTRAX_LABEL_STATUS"
+			description="COM_JTRAX_DESCRIPTION_STATUS"
+			size="40"
+			class="inputbox"
+			default=""
+		/>
+		<field
+			name="datetime"
+			type="calendar"
+			label="COM_JTRAX_LABEL_DATE"
+			class="inputbox"
+		/>
+	</fieldset>
+</form>
