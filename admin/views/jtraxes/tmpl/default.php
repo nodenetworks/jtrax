@@ -38,10 +38,10 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 			<th width="10%">
 				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_CODE', 'status', $listDirn, $listOrder);?>
 			</th>
-			<th width="5%">
+			<th width="10%">
 				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_DATE', 'datetime', $listDirn, $listOrder);?>
 			</th>
-			<th width="90%">
+			<th width="85%">
 				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_STATUS', 'status', $listDirn, $listOrder);?>
 			</th>
 			<th width="5%">
