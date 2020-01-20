@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.5" method="upgrade">
-	<name>JTrax</name>
+	<name>COM_JTRAX</name>
 	<creationDate>January 2020</creationDate>
 	<author>Michał Ostrykiewicz</author>
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
 	<license>GNU General Public License v2</license>
 	<version>1.0.0</version>
-	<description>jTrax v1.0.0 - The package was updated/installed successfully. </description>
+	<description>COM_JTRAX_DESCRIPTION</description>
 	<update> 
 		<schemas>
 			<schemapath type="mysql">sql/updates/mysql</schemapath>
@@ -24,6 +24,7 @@
 		</sql>
 	</uninstall>
 
+	<!-- Site Main File Copy Section -->
 	<files folder="site">
 		<filename>index.html</filename>
 		<filename>jtrax.php</filename>
@@ -37,18 +38,20 @@
 		<folder>images</folder>
 	</media>
 	<languages folder="site/language">
-		<language tag="it-IT">it-IT.com_jtrax.ini</language>
-		<language tag="es-ES">es-ES.com_jtrax.ini</language>
-		<language tag="en-GB">en-GB.com_jtrax.ini</language>
-		<language tag="pl-PL">pl-PL.com_jtrax.ini</language>
+		<language tag="en-GB">en-GB/en-GB.com_jtrax.ini</language>
+		<language tag="es-ES">es-ES/es-ES.com_jtrax.ini</language>
+		<language tag="it-IT">it-IT/it-IT.com_jtrax.ini</language>
+		<language tag="pl-PL">pl-PL/pl-PL.com_jtrax.ini</language>
 	</languages>
+	
+	<!-- Administration Menu Section -->
 	<administration>
-		<menu img="components/com_jtrax/assets/images/icon.gif">JTrax</menu>
+		<menu img="components/com_jtrax/assets/images/icon.gif">COM_JTRAX_MENU</menu>
 		<languages folder="admin/language">
-			<language tag="it-IT">it-IT.com_jtrax.ini</language>
-			<language tag="es-ES">es-ES.com_jtrax.ini</language>
-			<language tag="en-GB">en-GB.com_jtrax.ini</language>
-			<language tag="pl-PL">pl-PL.com_jtrax.ini</language>
+			<language tag="en-GB">en-GB/en-GB.com_jtrax.ini</language>
+			<language tag="es-ES">es-ES/es-ES.com_jtrax.ini</language>
+			<language tag="it-IT">it-IT/it-IT.com_jtrax.ini</language>
+			<language tag="pl-PL">pl-PL/pl-PL.com_jtrax.ini</language>
 		</languages>
 		<files folder="admin">
 			<filename>index.html</filename>
