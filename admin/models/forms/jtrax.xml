@@ -28,6 +28,7 @@
 			type="calendar"
 			label="COM_JTRAX_LABEL_DATE"
 			class="inputbox"
+			default="NOW"
 		/>
 	</fieldset>
 </form>
