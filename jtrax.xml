@@ -6,7 +6,7 @@
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
 	<license>GNU General Public License v2</license>
-	<version>1.0.1</version>
+	<version>1.0.2</version>
 	<description>COM_JTRAX_DESCRIPTION</description>
 	<update> 
 		<schemas>
