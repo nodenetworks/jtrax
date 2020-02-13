@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.5" method="upgrade">
 	<name>COM_JTRAX</name>
-	<creationDate>January 2020</creationDate>
+	<creationDate>Febuary 2020</creationDate>
 	<author>Michał Ostrykiewicz</author>
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
 	<license>GNU General Public License v2</license>
-	<version>1.0.2</version>
+	<version>1.0.3</version>
 	<description>COM_JTRAX_DESCRIPTION</description>
 	<update> 
 		<schemas>

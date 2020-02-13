@@ -24,13 +24,11 @@ class JtraxViewJTraxes extends JViewLegacy
 		$this->activeFilters = $this->get('ActiveFilters');
  
 		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
-
-			return false;
+		if (count($errors = $this->get('Errors'))) {
+			foreach($errors as $error) {
+				JFactory::getApplication()->enqueueMessage($error, 'error');
+			}
 		}
-		
 
 		$this->addToolBar();
 

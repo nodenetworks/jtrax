@@ -63,7 +63,7 @@ class JTraxViewJTrax extends JViewLegacy
 				if ($this->information==NULL || $this->information=='')
 				{
 					// Check for request forgeries.
-					JRequest::checkToken() or die( 'Invalid Token' );
+					JSession::checkToken() or die( 'Invalid Token' );
 					$error=JText::_('COM_JTRAX_ERROR_NO_RESULTS_PREPEND').$this->searchterm.JText::_('COM_JTRAX_ERROR_NO_RESULTS_APPEND');
 					JFactory::getApplication()->enqueueMessage($error,'notice');
 					$this->information=0;
