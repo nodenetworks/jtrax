@@ -11,12 +11,15 @@
 
 defined('_JEXEC') or die('Restricted access');
 
+use Joomla\CMS\Factory;
+
 class JTraxModelJTrax extends JModelItem
 {
 	protected $searchterm;
  	public function getSearchterm() 
 	{
-		$this->searchterm =  JRequest::getVar('code','','POST','STRING');
+		$jinput = Factory::getApplication()->input;
+		$this->searchterm = $jinput->get('code','','STRING');
 		return $this->searchterm;
 	}
 	

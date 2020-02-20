@@ -11,7 +11,7 @@
 
 defined('_JEXEC') or die('Restricted access');
 //jimport('joomla.application.component.view');
- 
+
 class JTraxViewJTrax extends JViewLegacy
 {
 	protected $form = null;
@@ -22,9 +22,10 @@ class JTraxViewJTrax extends JViewLegacy
 		$item = $this->get('Item');
  
 		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode('<br />', $errors));
+		if (count($errors = $this->get('Errors'))) {
+			foreach($errors as $error) {
+				JFactory::getApplication()->enqueueMessage($error, 'error');
+			}
 		}
 		
 		$this->form = $form;
