@@ -116,7 +116,7 @@
 			label="JCONFIG_PERMISSIONS_LABEL"
 			filter="rules"
 			validate="rules"
-			component="com_tags"
+			component="com_jtrax"
 			section="component"
 		/>
 	</fieldset>
