@@ -5,6 +5,7 @@
 			name="id"
 			type="hidden"
 		/>
+		
 		<field
 			name="code"
 			type="text"
@@ -14,6 +15,7 @@
 			class="inputbox"
 			default=""
 		/>
+		
 		<field
 			name="status"
 			type="text"
@@ -23,6 +25,7 @@
 			class="inputbox"
 			default=""
 		/>
+		
 		<field
 			name="datetime"
 			type="calendar"
@@ -30,5 +33,33 @@
 			class="inputbox"
 			default="NOW"
 		/>
+		
+		<field
+		name="published"
+		type="list"
+		label="JSTATUS"
+		description="JFIELD_PUBLISHED_DESC"
+		class="chzn-color-state"
+		default="1"
+		size="1"
+		>
+		<option value="1">JPUBLISHED</option>
+		<option value="0">JUNPUBLISHED</option>
+		<option value="2">JARCHIVED</option>
+		<option value="-2">JTRASHED</option>
+	</field>
+
+	<field
+		name="checked_out"
+		type="hidden"
+		filter="unset"
+	/>
+
+	<field
+		name="checked_out_time"
+		type="hidden"
+		filter="unset"
+	/>
+	
 	</fieldset>
 </form>
