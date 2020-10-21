@@ -34,7 +34,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		<tr>
 			<th width="1%"><?php echo JText::_('COM_JTRAX_NUM'); ?></th>
 			<th width="2%">
-				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count($this->items); ?>)" />
+				<?php echo JHtml::_('grid.checkall'); ?>
 			</th>
 			<th width="10%">
 				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_CODE', 'status', $listDirn, $listOrder);?>
