@@ -12,6 +12,8 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
+JHtml::_('bootstrap.tooltip');
+JHtml::_('behavior.multiselect');
 JHtml::_('formbehavior.chosen', 'select');
 
 $listOrder     = $this->escape($this->state->get('list.ordering'));
