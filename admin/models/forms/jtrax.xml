@@ -17,6 +17,19 @@
 		/>
 		
 		<field
+			name="catid"
+			type="category"
+			extension="com_helloworld"
+			class="inputbox"
+			default=""
+			label="COM_JTRAX_JTRAX_FIELD_CATID_LABEL"
+			description="COM_JTRAX_JTRAX_FIELD_CATID_DESC"
+			required="true"
+		>
+			<option value="0">JOPTION_SELECT_CATEGORY</option>
+		</field>
+		
+		<field
 			name="status"
 			type="text"
 			label="COM_JTRAX_LABEL_STATUS"
@@ -47,7 +60,7 @@
 		<option value="0">JUNPUBLISHED</option>
 		<option value="2">JARCHIVED</option>
 		<option value="-2">JTRASHED</option>
-	</field>
+		</field>
 
 	<field
 		name="checked_out"

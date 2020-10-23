@@ -74,6 +74,7 @@
 			<folder>views</folder>
 			<folder>controllers</folder>
 			<folder>tables</folder>
+			<folder>helpers</folder>
 		</files>
 	</administration>
 	<updateservers>
