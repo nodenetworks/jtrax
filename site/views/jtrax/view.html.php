@@ -16,6 +16,8 @@ class JTraxViewJTrax extends JViewLegacy
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{		
+	    JHtml::_('behavior.modal'); // Load modal behavior
+		parent::display($tpl);
 		/* load component params */
 		$this->params=JFactory::getApplication()->getParams();
 		
