@@ -11,7 +11,8 @@
 
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-JHtml::_('behavior.tooltip');
+JHtml::_('bootstrap.tooltip');
+JHtml::_('formbehavior.chosen', 'select');
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_jtrax&layout=edit&id=' . (int) $this->item->id); ?>"
