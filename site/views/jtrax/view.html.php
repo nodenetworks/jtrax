@@ -4,7 +4,7 @@
 # ------------------------------------------------------------------------
 # author    Michał Ostrykiewicz
 # copyright Copyright (C) 2010 Giovanni Mansillo. All Rights Reserved.
-# copyright Copyright (C) 2020 Michał Ostrykiewicz. All rights reserved.
+# copyright Copyright (C) 2025 Michał Ostrykiewicz. All rights reserved.
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Technical Support:  https://github.com/nodenetworks/jtrax/
 -------------------------------------------------------------------------*/
@@ -16,7 +16,7 @@ class JTraxViewJTrax extends JViewLegacy
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{		
-	    JHtml::_('behavior.modal'); // Load modal behavior
+	    JHtml::_('bootstrap.modal'); // Load modal behavior
 		parent::display($tpl);
 		/* load component params */
 		$this->params=JFactory::getApplication()->getParams();
