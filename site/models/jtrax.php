@@ -37,4 +37,24 @@ class JTraxModelJTrax extends JModelItem
 		$this->information = $db->loadObjectList();
 		return $this->information;
 	}
+	public function getItem($pk = null)
+{
+    $pk = (!empty($pk)) ? $pk : (int) $this->getState('jtrax.id');
+
+    if ($pk === 0) {
+        return false; // No valid primary key
+    }
+
+    // Load the item from the database
+    $db = $this->getDbo();
+    $query = $db->getQuery(true)
+        ->select('*')
+        ->from($db->quoteName('#__jtrax'))
+        ->where($db->quoteName('id') . ' = ' . (int) $pk);
+    $db->setQuery($query);
+
+    $item = $db->loadObject();
+
+    if (!$item) {
+        throw new Exception('Item not found', 404);
 }
