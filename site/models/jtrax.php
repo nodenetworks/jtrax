@@ -4,16 +4,15 @@
 # ------------------------------------------------------------------------
 # author    Michał Ostrykiewicz
 # copyright Copyright (C) 2010 Giovanni Mansillo. All Rights Reserved.
-# copyright Copyright (C) 2025 Michał Ostrykiewicz. All rights reserved.
+# copyright Copyright (C) 2020 - 2025 Michał Ostrykiewicz. All rights reserved.
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Technical Support:  https://github.com/nodenetworks/jtrax/
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
 
-use Joomla\CMS\Factory;
-
-class JTraxModelJTrax extends JModelItem
+use \Joomla\CMS\Factory;
+use \Joomla\CMS\MVC\Model\ItemModel;
 {
 	protected $searchterm;
  	public function getSearchterm() 
@@ -26,7 +25,7 @@ class JTraxModelJTrax extends JModelItem
 	protected $information;
  	public function getInformation() 
 	{
-		$db =JFactory::getDbo();
+		$db =Factory::getDbo();
 		$query = $db->getQuery(true);
 		
 		$query->select('*');
