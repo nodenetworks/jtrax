@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use \Joomla\CMS\MVC\View\HtmlView;
 use \Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 {
 	protected $form = null;
 
@@ -52,8 +53,8 @@ use \Joomla\CMS\Factory;
 		//Enable once implemented
 		//$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
 		
-		JToolBarHelper::title($isNew ? JText::_('COM_JTRAX_TITLE_NEW')
-		                             : JText::_('COM_JTRAX_TITLE_EDIT'));
+		JToolBarHelper::title($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
+		                             : Text::_('COM_JTRAX_TITLE_EDIT'));
 		JToolBarHelper::apply('jtrax.apply');
 		JToolBarHelper::save('jtrax.save');
 		JToolBarHelper::save2new('jtrax.save2new');
@@ -64,7 +65,7 @@ use \Joomla\CMS\Factory;
 	{
 		$isNew = ($this->item->id < 1);
 		$document = Factory::getDocument();
-		$document->setTitle($isNew ? JText::_('COM_JTRAX_TITLE_NEW')
-		                           : JText::_('COM_JTRAX_TITLE_EDIT'));
+		$document->setTitle($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
+		                           : Text::_('COM_JTRAX_TITLE_EDIT'));
 	}
 }

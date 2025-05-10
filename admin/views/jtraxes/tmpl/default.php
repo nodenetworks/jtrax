@@ -14,6 +14,7 @@ defined('_JEXEC') or die;
 use \Joomla\CMS\HTML\HTMLHelper;
 use \Joomla\CMS\Language\Text;
 use \Joomla\CMS\Layout\LayoutHelper;
+use \Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
@@ -68,7 +69,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		<tbody>
 			<?php if (!empty($this->items)) : ?>
 				<?php foreach ($this->items as $i => $item) :
-					$link = JRoute::_('index.php?option=com_jtrax&task=jtrax.edit&id=' . $item->id);
+					$link = Route::_('index.php?option=com_jtrax&task=jtrax.edit&id=' . $item->id);
 				?>
 					<tr>
 						<td><?php echo $this->pagination->getRowOffset($i); ?></td>
