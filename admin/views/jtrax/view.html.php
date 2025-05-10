@@ -49,7 +49,7 @@ use Joomla\CMS\Toolbar\ToolbarHelper;
 		// Hide Joomla Administrator Main menu
 		$input->set('hidemainmenu', true);
 		
-		$user       = Factory::getUser();
+		$this->getCurrentUser();
 		$isNew      = ($this->item->id == 0);
 		//Enable once implemented
 		//$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
