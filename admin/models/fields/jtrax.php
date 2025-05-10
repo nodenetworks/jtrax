@@ -12,6 +12,9 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 
+use Joomla\CMS\Factory;
+use \Joomla\CMS\Form\Field\ListField;
+
 JFormHelper::loadFieldClass('list');
 
 /**
@@ -19,7 +22,6 @@ JFormHelper::loadFieldClass('list');
  *
  * @since  0.0.1
  */
-use \Joomla\CMS\Form\Field\ListField;
 {
 	/**
 	 * The field type.
@@ -35,7 +37,7 @@ use \Joomla\CMS\Form\Field\ListField;
 	 */
 	protected function getOptions()
 	{
-		$db    = JFactory::getDBO();
+		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
 		$query->select('id,code,datetime,status');
 		$query->from('#__jtrax');
