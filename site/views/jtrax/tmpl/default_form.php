@@ -12,6 +12,7 @@
 defined('_JEXEC') or die;
 use \Joomla\CMS\HTML\HTMLHelper;
 use \Joomla\CMS\Language\Text;
+use \Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.modal');
 ?>
@@ -24,7 +25,7 @@ HTMLHelper::_('bootstrap.modal');
 			</a>
 		</p>
 	<?php }?> 
-	<form name="input" action="<?php echo JRoute::_('index.php?option=com_jtrax'); ?>" method="post">
+	<form name="input" action="<?php echo Route::_('index.php?option=com_jtrax'); ?>" method="post">
 		<?php echo HTMLHelper::_( 'form.token' ); ?>
 		<?php echo $this->params->get('label',Text::_('COM_JTRAX_SEARCH_LABEL')); ?> <input type="text" name="code" maxlength="31" />
 		<input type="submit" value="<?php echo $this->params->get('button',Text::_('COM_JTRAX_SEARCH_BUTTON')); ?>" />

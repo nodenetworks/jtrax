@@ -11,17 +11,19 @@
 
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-use Joomla\CMS\HTML\HTMLHelper;
+use \Joomla\CMS\HTML\HTMLHelper;
+use \Joomla\CMS\Router\Route;
+use \Joomla\CMS\Language\Text;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('formbehavior.chosen', 'select');
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_jtrax&layout=edit&id=' . (int) $this->item->id); ?>"
+<form action="<?php echo Route::_('index.php?option=com_jtrax&layout=edit&id=' . (int) $this->item->id); ?>"
     method="post" name="adminForm" id="adminForm">
     <div class="form-horizontal">
         <fieldset class="adminform">
-            <legend><?php echo JText::_('COM_JTRAX_LEGEND_DETAILS'); ?></legend>
+            <legend><?php echo Text::_('COM_JTRAX_LEGEND_DETAILS'); ?></legend>
             <div class="row-fluid">
                 <div class="span6">
                     <?php foreach ($this->form->getFieldset() as $field): ?>

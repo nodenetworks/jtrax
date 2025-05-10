@@ -12,6 +12,8 @@
 // No direct access to this file
 defined('_JEXEC') or die;
 use \Joomla\CMS\HTML\HTMLHelper;
+use \Joomla\CMS\Language\Text;
+use \Joomla\CMS\Layout\LayoutHelper;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');
@@ -23,9 +25,9 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 <form action="index.php?option=com_jtrax&view=jtraxes" method="post" id="adminForm" name="adminForm">
 	<div class="item-fluid">
 		<div class="span6">
-			<?php echo JText::_('COM_JTRAX_JTRAXES_FILTER'); ?>
+			<?php echo Text::_('COM_JTRAX_JTRAXES_FILTER'); ?>
 			<?php
-				echo JLayoutHelper::render(
+				echo LayoutHelper::render(
 					'joomla.searchtools.default',
 					array('view' => $this)
 				);
@@ -35,7 +37,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 	<table class="table table-striped table-hover">
 		<thead>
 		<tr>
-			<th width="1%"><?php echo JText::_('COM_JTRAX_NUM'); ?></th>
+			<th width="1%"><?php echo Text::_('COM_JTRAX_NUM'); ?></th>
 			<th width="2%">
 				<?php echo HTMLHelper::_('grid.checkall'); ?>
 			</th>
@@ -74,7 +76,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 							<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td>
-							<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_JTRAX_EDIT_JTRAX'); ?>">
+							<a href="<?php echo $link; ?>" title="<?php echo Text::_('COM_JTRAX_EDIT_JTRAX'); ?>">
 								<?php echo $item->code; ?>
 							</a>
 						</td>
