@@ -14,6 +14,7 @@ defined('_JEXEC') or die('Restricted access');
 
 use \Joomla\CMS\MVC\Model\AdminModel;
 use \Joomla\CMS\Table\Table;
+use \Joomla\CMS\Factory;
 {
 	public function getTable($type = 'JTrax', $prefix = 'JTraxTable', $config = array()) 
 	{
@@ -39,7 +40,7 @@ use \Joomla\CMS\Table\Table;
 		
 	protected function loadFormData() 
 	{
-		$data = JFactory::getApplication()->getUserState(
+		$data = Factory::getApplication()->getUserState(
 		'com_jtrax.edit.jtrax.data',
 		array()
 		);

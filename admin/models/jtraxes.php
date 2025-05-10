@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 //jimport('joomla.application.component.modellist');
 
 use \Joomla\CMS\MVC\Model\ListModel;
+use \Joomla\CMS\Factory;
 
 {
 
@@ -40,7 +41,7 @@ use \Joomla\CMS\MVC\Model\ListModel;
 	protected function getListQuery()
 	{
 		// Initialize variables.
-		$db    = JFactory::getDbo();
+		$db    = Factory::getDbo();
 		$query = $db->getQuery(true);
 
 		// Create the base select statement.

@@ -13,6 +13,9 @@ defined('_JEXEC') or die('Restricted access');
 //jimport('joomla.application.component.view');
 
 use \Joomla\CMS\MVC\View\HtmlView;
+use \Joomla\CMS\Factory;
+use \Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 {
 	function display($tpl = null) 
 	{
@@ -26,7 +29,7 @@ use \Joomla\CMS\MVC\View\HtmlView;
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			foreach($errors as $error) {
-				JFactory::getApplication()->enqueueMessage($error, 'error');
+				Factory::getApplication()->enqueueMessage($error, 'error');
 			}
 		}
 
@@ -38,23 +41,23 @@ use \Joomla\CMS\MVC\View\HtmlView;
 	}
 	protected function addToolBar() 
 	{
-		$title = JText::_('COM_JTRAX_TITLE_MAIN');
+		$title = Text::_('COM_JTRAX_TITLE_MAIN');
 
 		if ($this->pagination->total)
 		{
 			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
 		}
 
-		JToolBarHelper::title($title, 'jtrax');
-		JToolBarHelper::addNew('jtrax.add');
-		JToolBarHelper::editList('jtrax.edit');
-		JToolBarHelper::deleteList('','jtraxes.delete'); 
-		JToolBarHelper::preferences('com_jtrax');
+		ToolBarHelper::title($title, 'jtrax');
+		ToolBarHelper::addNew('jtrax.add');
+		ToolBarHelper::editList('jtrax.edit');
+		ToolBarHelper::deleteList('','jtraxes.delete'); 
+		ToolBarHelper::preferences('com_jtrax');
 	}
 	
 	protected function setDocument() 
 	{
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$document->setTitle('JTrax');
 	}
 }

@@ -13,6 +13,7 @@ defined('_JEXEC') or die('Restricted access');
 //jimport('joomla.application.component.view');
 
 use \Joomla\CMS\MVC\View\HtmlView;
+use \Joomla\CMS\Factory;
 {
 	protected $form = null;
 
@@ -24,7 +25,7 @@ use \Joomla\CMS\MVC\View\HtmlView;
 		// Check for errors.
 		if (count($errors = $this->get('Errors'))) {
 			foreach($errors as $error) {
-				JFactory::getApplication()->enqueueMessage($error, 'error');
+				Factory::getApplication()->enqueueMessage($error, 'error');
 			}
 		}
 		
@@ -42,11 +43,11 @@ use \Joomla\CMS\MVC\View\HtmlView;
  
 	protected function addToolBar() 
 	{
-		$input = JFactory::getApplication()->input;
+		$input = Factory::getApplication()->input;
 		// Hide Joomla Administrator Main menu
 		$input->set('hidemainmenu', true);
 		
-		$user       = JFactory::getUser();
+		$user       = Factory::getUser();
 		$isNew      = ($this->item->id == 0);
 		//Enable once implemented
 		//$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
@@ -62,7 +63,7 @@ use \Joomla\CMS\MVC\View\HtmlView;
 	protected function setDocument() 
 	{
 		$isNew = ($this->item->id < 1);
-		$document = JFactory::getDocument();
+		$document = Factory::getDocument();
 		$document->setTitle($isNew ? JText::_('COM_JTRAX_TITLE_NEW')
 		                           : JText::_('COM_JTRAX_TITLE_EDIT'));
 	}
