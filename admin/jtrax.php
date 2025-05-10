@@ -17,7 +17,8 @@ defined('_JEXEC') or die('Restricted access');
 
 //jimport('joomla.application.component.controller');
 
-$controller = JControllerLegacy::getInstance('JTrax');
+use Joomla\CMS\MVC\Controller\BaseController;
+//$controller = JControllerLegacy::getInstance('JTrax');
 
 $input = JFactory::getApplication()->input;
 $controller->execute($input->getCmd('task'));
