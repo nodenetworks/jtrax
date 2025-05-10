@@ -14,8 +14,10 @@ defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
 use \Joomla\CMS\Form\Field\ListField;
+use \Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\HTML\HTMLHelper;
 
-JFormHelper::loadFieldClass('list');
+FormHelper::loadFieldClass('list');
 
 /**
  * JTrax Form Field class for the JTrax component
@@ -49,7 +51,7 @@ JFormHelper::loadFieldClass('list');
 		{
 			foreach ($messages as $message)
 			{
-				$options[] = JHtml::_('select.option', $message->id, $message->code, $message->datetime, $message->status);
+				$options[] = HTMLHelper::_('select.option', $message->id, $message->code, $message->datetime, $message->status);
 			}
 		}
 

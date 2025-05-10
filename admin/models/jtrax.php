@@ -13,10 +13,11 @@ defined('_JEXEC') or die('Restricted access');
 //jimport('joomla.application.component.modeladmin');
 
 use \Joomla\CMS\MVC\Model\AdminModel;
+use \Joomla\CMS\Table\Table;
 {
 	public function getTable($type = 'JTrax', $prefix = 'JTraxTable', $config = array()) 
 	{
-		return JTable::getInstance($type, $prefix, $config);
+		return Table::getInstance($type, $prefix, $config);
 	}
 	public function getForm($data = array(), $loadData = true) 
 	{
