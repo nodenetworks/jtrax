@@ -4,17 +4,18 @@
 # ------------------------------------------------------------------------
 # author    Michał Ostrykiewicz
 # copyright Copyright (C) 2010 Giovanni Mansillo. All Rights Reserved.
-# copyright Copyright (C) 2020 Michał Ostrykiewicz. All rights reserved.
+# copyright Copyright (C) 2020-2025 Michał Ostrykiewicz. All rights reserved.
 # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
 # Technical Support:  https://github.com/nodenetworks/jtrax/
 -------------------------------------------------------------------------*/
 
 // No direct access to this file
 defined('_JEXEC') or die;
+use \Joomla\CMS\HTML\HTMLHelper;
 
-JHtml::_('bootstrap.tooltip');
-JHtml::_('behavior.multiselect');
-JHtml::_('formbehavior.chosen', 'select');
+HTMLHelper::_('bootstrap.tooltip');
+HTMLHelper::_('behavior.multiselect');
+HTMLHelper::_('formbehavior.chosen', 'select');
 
 $listOrder     = $this->escape($this->state->get('list.ordering'));
 $listDirn      = $this->escape($this->state->get('list.direction'));
@@ -36,22 +37,22 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		<tr>
 			<th width="1%"><?php echo JText::_('COM_JTRAX_NUM'); ?></th>
 			<th width="2%">
-				<?php echo JHtml::_('grid.checkall'); ?>
+				<?php echo HTMLHelper::_('grid.checkall'); ?>
 			</th>
 			<th width="10%">
-				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_CODE', 'status', $listDirn, $listOrder);?>
+				<?php echo HTMLHelper::_('grid.sort', 'COM_JTRAX_LABEL_CODE', 'status', $listDirn, $listOrder);?>
 			</th>
 			<th width="10%">
-				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_DATE', 'datetime', $listDirn, $listOrder);?>
+				<?php echo HTMLHelper::_('grid.sort', 'COM_JTRAX_LABEL_DATE', 'datetime', $listDirn, $listOrder);?>
 			</th>
 			<th width="85%">
-				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_LABEL_STATUS', 'status', $listDirn, $listOrder);?>
+				<?php echo HTMLHelper::_('grid.sort', 'COM_JTRAX_LABEL_STATUS', 'status', $listDirn, $listOrder);?>
 			</th>
 			<th width="5%">
-				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_PUBLISHED', 'published', $listDirn, $listOrder); ?>
+				<?php echo HTMLHelper::_('grid.sort', 'COM_JTRAX_PUBLISHED', 'published', $listDirn, $listOrder); ?>
 			</th>
 			<th width="2%">
-				<?php echo JHtml::_('grid.sort', 'COM_JTRAX_ID', 'id', $listDirn, $listOrder); ?>
+				<?php echo HTMLHelper::_('grid.sort', 'COM_JTRAX_ID', 'id', $listDirn, $listOrder); ?>
 			</th>
 		</tr>
 		</thead>
@@ -70,7 +71,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 					<tr>
 						<td><?php echo $this->pagination->getRowOffset($i); ?></td>
 						<td>
-							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
+							<?php echo HTMLHelper::_('grid.id', $i, $item->id); ?>
 						</td>
 						<td>
 							<a href="<?php echo $link; ?>" title="<?php echo JText::_('COM_JTRAX_EDIT_JTRAX'); ?>">
@@ -84,7 +85,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 							<?php echo $item->status; ?>
 						</td>
 						<td align="center">
-							<?php echo JHtml::_('jgrid.published', $item->published, $i, 'jtraxes.', true, 'cb'); ?>
+							<?php echo HTMLHelper::_('jgrid.published', $item->published, $i, 'jtraxes.', true, 'cb'); ?>
 						</td>
 						<td align="center">
 							<?php echo $item->id; ?>
@@ -98,6 +99,6 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 	<input type="hidden" name="boxchecked" value="0"/>
 	<input type="hidden" name="filter_order" value="<?php echo $listOrder; ?>"/>
 	<input type="hidden" name="filter_order_Dir" value="<?php echo $listDirn; ?>"/>
-	<?php echo JHtml::_('form.token'); ?>
+	<?php echo HTMLHelper::_('form.token'); ?>
 </form>
 

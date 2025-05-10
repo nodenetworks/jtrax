@@ -12,8 +12,10 @@
 defined('_JEXEC') or die('Restricted access');
 
 use \Joomla\CMS\MVC\View\HtmlView;
-use Joomla\CMS\Factory;
+use \Joomla\CMS\Factory;
 use \Joomla\CMS\Session\Session;
+use \Joomla\CMS\Language\Text;
+use \Joomla\CMS\Log\Log;
 {
 	// Overwriting JView display method
 	function display($tpl = null) 
@@ -50,14 +52,14 @@ use \Joomla\CMS\Session\Session;
 		
 		if($this->open==FALSE)
 		{		
-				$error=$this->params->get('errClose',JText::_('COM_JTRAX_ERROR_CLOSED'));
+				$error=$this->params->get('errClose',Text::_('COM_JTRAX_ERROR_CLOSED'));
 				Factory::getApplication()->enqueueMessage($error,'error');
 				$this->information=0;
 		}
 		else if (!empty($this->searchterm)){
 			/* This regular expression check if deathly chars were included in the search code - DO NOT ignore this! */
 			if (!preg_match("/^[a-z0-9]{4,31}$/i", $this->searchterm)){
-				$error=$this->params->get('errInvalid','"'.$this->searchterm.'" '.JText::_('COM_JTRAX_ERROR_INVALID_CODE'));
+				$error=$this->params->get('errInvalid','"'.$this->searchterm.'" '.Text::_('COM_JTRAX_ERROR_INVALID_CODE'));
 				Factory::getApplication()->enqueueMessage($error,'error');
 				$this->information=0;
 			}
@@ -68,7 +70,7 @@ use \Joomla\CMS\Session\Session;
 				{
 					// Check for request forgeries.
 					Session::checkToken() or die( 'Invalid Token' );
-					$error=JText::_('COM_JTRAX_ERROR_NO_RESULTS_PREPEND').$this->searchterm.JText::_('COM_JTRAX_ERROR_NO_RESULTS_APPEND');
+					$error=Text::_('COM_JTRAX_ERROR_NO_RESULTS_PREPEND').$this->searchterm.Text::_('COM_JTRAX_ERROR_NO_RESULTS_APPEND');
 					Factory::getApplication()->enqueueMessage($error,'notice');
 					$this->information=0;
 				}
@@ -77,7 +79,7 @@ use \Joomla\CMS\Session\Session;
 			// Check for errors.
 			if (count($errors = $this->get('Errors')))
 			{
-			    JLog::add(implode('<br />', $errors), JLog::WARNING, 'jerror');
+			    Log::add(implode('<br />', $errors), Log::WARNING, 'jerror');
 			    
 			    return false;
 			}

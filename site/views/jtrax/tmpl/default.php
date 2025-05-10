@@ -10,7 +10,9 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die;
-JHTML::_('bootstrap.modal'); 
+use Joomla\CMS\HTML\HTMLHelper;
+
+HTMLHelper::_('bootstrap.modal');
 ?>
 
 <div class="jtrax<?php echo $this->pageclass_sfx; ?>">

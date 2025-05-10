@@ -35,7 +35,7 @@ FormHelper::loadFieldClass('list');
 	/**
 	 * Method to get a list of options for a list input.
 	 *
-	 * @return  array  An array of JHtml options.
+	 * @return  array  An array of HTMLHelper options.
 	 */
 	protected function getOptions()
 	{
