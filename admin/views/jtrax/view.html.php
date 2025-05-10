@@ -15,6 +15,7 @@ defined('_JEXEC') or die('Restricted access');
 use \Joomla\CMS\MVC\View\HtmlView;
 use \Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Toolbar\ToolbarHelper;
 {
 	protected $form = null;
 
@@ -53,12 +54,12 @@ use Joomla\CMS\Language\Text;
 		//Enable once implemented
 		//$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
 		
-		JToolBarHelper::title($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
+		ToolBarHelper::title($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
 		                             : Text::_('COM_JTRAX_TITLE_EDIT'));
-		JToolBarHelper::apply('jtrax.apply');
-		JToolBarHelper::save('jtrax.save');
-		JToolBarHelper::save2new('jtrax.save2new');
-		JToolBarHelper::cancel('jtrax.cancel', $isNew ? 'JTOOLBAR_CANCEL'
+		ToolBarHelper::apply('jtrax.apply');
+		ToolBarHelper::save('jtrax.save');
+		ToolBarHelper::save2new('jtrax.save2new');
+		ToolBarHelper::cancel('jtrax.cancel', $isNew ? 'JTOOLBAR_CANCEL'
 		                                                   : 'JTOOLBAR_CLOSE');
 	}
 	protected function setDocument() 

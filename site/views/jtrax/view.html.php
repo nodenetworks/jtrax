@@ -16,11 +16,12 @@ use \Joomla\CMS\Factory;
 use \Joomla\CMS\Session\Session;
 use \Joomla\CMS\Language\Text;
 use \Joomla\CMS\Log\Log;
+use \Joomla\CMS\HTML\HTMLHelper;
 {
 	// Overwriting JView display method
 	function display($tpl = null) 
 	{		
-	    JHtml::_('bootstrap.modal'); // Load modal behavior
+	    HTMLHelper::_('bootstrap.modal'); // Load modal behavior
 		parent::display($tpl);
 		/* load component params */
 		$this->params=Factory::getApplication()->getParams();
