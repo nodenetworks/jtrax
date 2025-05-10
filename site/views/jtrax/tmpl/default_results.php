@@ -10,19 +10,20 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die;
+use \Joomla\CMS\Language\Text;
 
 echo "<p>";
-echo JText::_('COM_JTRAX_RESULTS_FOR');
+echo Text::_('COM_JTRAX_RESULTS_FOR');
 echo $this->searchterm;
 echo "</p>";
 $results=$this->information;
 echo "<table class='results' style='width:100%'><thead>";
 echo "<tr>";
 echo "<td><style='width:30%'>";
-echo JText::_('COM_JTRAX_RESULTS_DATE');
+echo Text::_('COM_JTRAX_RESULTS_DATE');
 echo "</td>";
 echo "<td>";
-echo JText::_('COM_JTRAX_RESULTS_STATUS');
+echo Text::_('COM_JTRAX_RESULTS_STATUS');
 echo "</td>";
 echo "</tr></thead><tbody>";
 foreach($results as $el) //print all results
