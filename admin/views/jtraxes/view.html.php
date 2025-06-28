@@ -10,54 +10,84 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-//jimport('joomla.application.component.view');
 
-use \Joomla\CMS\MVC\View\HtmlView;
-use \Joomla\CMS\Factory;
-use \Joomla\CMS\Language\Text;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Factory;
+use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Document\Document;
+
+/**
+ * View class for the list of JTrax items.
+ */
+class JTraxViewJtraxes extends HtmlView
 {
-	function display($tpl = null) 
-	{
-		// Get data from the model
-		$this->items		= $this->get('Items');
-		$this->pagination	= $this->get('Pagination');
-		$this->state		= $this->get('State');
-		$this->filterForm    = $this->get('FilterForm');
-		$this->activeFilters = $this->get('ActiveFilters');
- 
-		// Check for errors.
-		if (count($errors = $this->get('Errors'))) {
-			foreach($errors as $error) {
-				Factory::getApplication()->enqueueMessage($error, 'error');
-			}
-		}
+    public $items;
+    public $pagination;
+    public $state;
+    public $filterForm;
+    public $activeFilters;
 
-		$this->addToolBar();
+    /**
+     * Display the view
+     *
+     * @param string|null $tpl The name of the template file to parse
+     * @return void
+     */
+    public function display($tpl = null): void
+    {
+        // Get data from the model
+        $this->items          = $this->get('Items');
+        $this->pagination     = $this->get('Pagination');
+        $this->state          = $this->get('State');
+        $this->filterForm     = $this->get('FilterForm');
+        $this->activeFilters  = $this->get('ActiveFilters');
 
-		parent::display($tpl);
-		
-		$this->setDocument();
-	}
-	protected function addToolBar() 
-	{
-		$title = Text::_('COM_JTRAX_TITLE_MAIN');
+        // Check for errors
+        if ($errors = $this->get('Errors')) {
+            foreach ($errors as $error) {
+                Factory::getApplication()->enqueueMessage($error, 'error');
+            }
+        }
 
-		if ($this->pagination->total)
-		{
-			$title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
-		}
+        // Add the toolbar
+        $this->addToolBar();
 
-		ToolBarHelper::title($title, 'jtrax');
-		ToolBarHelper::addNew('jtrax.add');
-		ToolBarHelper::editList('jtrax.edit');
-		ToolBarHelper::deleteList('','jtraxes.delete'); 
-		ToolBarHelper::preferences('com_jtrax');
-	}
-	
-	protected function setDocument() 
-	{
-		$document = Factory::getDocument();
-		$document->setTitle('JTrax');
-	}
+        // Display the template
+        parent::display($tpl);
+
+        // Set the document title
+        $this->setDocument(Factory::getDocument());
+    }
+
+    /**
+     * Configure the toolbar
+     *
+     * @return void
+     */
+    protected function addToolBar(): void
+    {
+        $title = Text::_('COM_JTRAX_TITLE_MAIN');
+
+        if ($this->pagination->total) {
+            $title .= "<span style='font-size: 0.5em; vertical-align: middle;'>(" . $this->pagination->total . ")</span>";
+        }
+
+        ToolbarHelper::title($title, 'jtrax');
+        ToolbarHelper::addNew('jtrax.add');
+        ToolbarHelper::editList('jtrax.edit');
+        ToolbarHelper::deleteList('', 'jtraxes.delete');
+        ToolbarHelper::preferences('com_jtrax');
+    }
+
+    /**
+     * Set the document title
+     *
+     * @param Document $document
+     * @return void
+     */
+    public function setDocument(Document $document): void
+    {
+        $document->setTitle(Text::_('COM_JTRAX_TITLE_MAIN'));
+    }
 }

@@ -10,12 +10,14 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\MVC\Controller\BaseController;
+
+class JTraxController extends BaseController
 {
-	protected $default_view = 'jtraxes';
-		
-	function display($cachable = false, $urlparams = false) 
-	{
-		parent::display($cachable);
-	}
+    protected $default_view = 'jtraxes';
+
+    public function display($cachable = false, $urlparams = array())
+    {
+        parent::display($cachable, $urlparams);
+    }
 }
