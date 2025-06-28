@@ -10,63 +10,81 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-//jimport('joomla.application.component.view');
 
-use \Joomla\CMS\MVC\View\HtmlView;
-use \Joomla\CMS\Factory;
+use Joomla\CMS\MVC\View\HtmlView;
+use Joomla\CMS\Factory;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Toolbar\ToolbarHelper;
-{
-	protected $form = null;
+use Joomla\CMS\Document\Document;
 
-	public function display($tpl = null) 
-	{
-		$form = $this->get('Form');
-		$item = $this->get('Item');
- 
-		// Check for errors.
-		if (count($errors = $this->get('Errors'))) {
-			foreach($errors as $error) {
-				Factory::getApplication()->enqueueMessage($error, 'error');
-			}
-		}
-		
-		$this->form = $form;
-		$this->item = $item;
- 
-		$this->addToolBar();
- 
-		parent::display($tpl);
-	
- 
-		// Set the document
-		$this->setDocument();
-	}
- 
-	protected function addToolBar() 
-	{
-		$input = Factory::getApplication()->input;
-		// Hide Joomla Administrator Main menu
-		$input->set('hidemainmenu', true);
-		
-		$this->getCurrentUser();
-		$isNew      = ($this->item->id == 0);
-		//Enable once implemented
-		//$checkedOut = !($this->item->checked_out == 0 || $this->item->checked_out == $user->get('id'));
-		
-		ToolBarHelper::title($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
-		                             : Text::_('COM_JTRAX_TITLE_EDIT'));
-		ToolBarHelper::apply('jtrax.apply');
-		ToolBarHelper::save('jtrax.save');
-		ToolBarHelper::save2new('jtrax.save2new');
-		ToolBarHelper::cancel('jtrax.cancel', $isNew ? 'JTOOLBAR_CANCEL'
-		                                                   : 'JTOOLBAR_CLOSE');
-	}
-	protected function setDocument() 
-	{
-		$isNew = ($this->item->id < 1);
-		$document = Factory::getDocument();
-		$document->setTitle($isNew ? Text::_('COM_JTRAX_TITLE_NEW')
-		                           : Text::_('COM_JTRAX_TITLE_EDIT'));
-	}
+/**
+ * View class for editing a JTrax item.
+ */
+class JTraxViewJtrax extends HtmlView
+{
+    public $form;
+    public $item;
+
+    /**
+     * Display the view
+     *
+     * @param string|null $tpl The name of the template file to parse
+     * @return void
+     */
+    public function display($tpl = null): void
+    {
+        $this->form = $this->get('Form');
+        $this->item = $this->get('Item');
+
+        // Check for errors
+        if ($errors = $this->get('Errors')) {
+            foreach ($errors as $error) {
+                Factory::getApplication()->enqueueMessage($error, 'error');
+            }
+        }
+
+        $this->addToolBar();
+        parent::display($tpl);
+        $this->setDocument(Factory::getDocument());
+    }
+
+    /**
+     * Configure the toolbar
+     *
+     * @return void
+     */
+    protected function addToolBar(): void
+    {
+        $input = Factory::getApplication()->input;
+
+        // Hide main menu in Joomla admin
+        $input->set('hidemainmenu', true);
+
+        $isNew = empty($this->item->id);
+
+        ToolbarHelper::title(
+            $isNew ? Text::_('COM_JTRAX_TITLE_NEW') : Text::_('COM_JTRAX_TITLE_EDIT'),
+            'jtrax'
+        );
+
+        ToolbarHelper::apply('jtrax.apply');
+        ToolbarHelper::save('jtrax.save');
+        ToolbarHelper::save2new('jtrax.save2new');
+        ToolbarHelper::cancel('jtrax.cancel', $isNew ? 'JTOOLBAR_CANCEL' : 'JTOOLBAR_CLOSE');
+    }
+
+    /**
+     * Set the document title
+     *
+     * @param Document $document
+     * @return void
+     */
+    public function setDocument(Document $document): void
+    {
+        $isNew = empty($this->item->id);
+
+        $document->setTitle(
+            $isNew ? Text::_('COM_JTRAX_TITLE_NEW') : Text::_('COM_JTRAX_TITLE_EDIT')
+        );
+    }
 }
