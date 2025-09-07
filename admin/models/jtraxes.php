@@ -10,24 +10,23 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-//jimport('joomla.application.component.modellist');
 
-use \Joomla\CMS\MVC\Model\ListModel;
-use \Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ListModel;
+use Joomla\CMS\Factory;
 
+class JtraxModelJtraxes extends ListModel
 {
 
 	public function __construct($config = array())
 	{
-		if (empty($config['filter_fields']))
-		{
-			$config['filter_fields'] = array(
+		if (empty($config['filter_fields'])) {
+			$config['filter_fields'] = [
 				'id',
 				'code',
 				'datetime',
 				'status',
 				'published'
-			);
+			];
 		}
 
 		parent::__construct($config);
@@ -77,4 +76,9 @@ use \Joomla\CMS\Factory;
 
 		return $query;
 	}
+	
+	protected function populateState($ordering = null, $direction = null)
+    {
+        parent::populateState($ordering, $direction);
+    }
 }
