@@ -10,9 +10,10 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-//jimport('joomla.database.table'); 
 
 use \Joomla\CMS\Table\Table;
+
+class JtraxTableJtrax extends Table
 {
 	function __construct(&$db) 
 	{
