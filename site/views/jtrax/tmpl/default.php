@@ -10,29 +10,26 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die;
+
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
 
-HTMLHelper::_('bootstrap.modal');
+// Extract parameters
+$params = $this->params;
+
+// Where-to-find text and image
+$wheretofindtext = $params->get('wheretofindtext', Text::_('COM_JTRAX_SEARCH_WHERE_TO_FIND'));
+$wheretofindimage = $params->get('wheretofindimage', 'media/com_jtrax/images/wheretofind.jpg');
 ?>
 
 <!-- Intro text -->
-<p><?php echo htmlspecialchars($this->params->get('introtext', Text::_('COM_JTRAX_SEARCH_INTRO_TEXT')), ENT_QUOTES, 'UTF-8'); ?></p>
+<p><?php echo $params->get('introtext', Text::_('COM_JTRAX_SEARCH_INTRO_TEXT')); ?></p>
 
-<!-- Where to find link -->
-
-<?php
-$wheretofindtext = $this->params->get('wheretofindtext', '');
-if (empty($wheretofindtext)) {
-    $wheretofindtext = Text::_('COM_JTRAX_SEARCH_WHERE_TO_FIND');
-}
-
-$wheretofindimage = $this->params->get('wheretofindimage', 'media/com_jtrax/images/wheretofind.jpg');
-?>
-<?php if ($this->params->get('wheretofind', '1') == 1): ?>
+<!-- Where to find modal -->
+<?php if ($params->get('wheretofind', '1') == 1): ?>
 <p>
-    <a href="#wheretofindModal" data-bs-toggle="modal">
+    <a href="#" data-bs-toggle="modal" data-bs-target="#wheretofindModal">
         <?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>
     </a>
 </p>
@@ -45,7 +42,9 @@ $wheretofindimage = $this->params->get('wheretofindimage', 'media/com_jtrax/imag
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo Text::_('JTOOLBAR_CLOSE'); ?>"></button>
             </div>
             <div class="modal-body text-center">
-                <img src="<?php echo htmlspecialchars($wheretofindimage, ENT_QUOTES, 'UTF-8'); ?>" class="img-fluid" alt="<?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>" />
+                <img src="<?php echo htmlspecialchars($wheretofindimage, ENT_QUOTES, 'UTF-8'); ?>" 
+                     class="img-fluid" 
+                     alt="<?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>" />
             </div>
         </div>
     </div>
@@ -53,35 +52,34 @@ $wheretofindimage = $this->params->get('wheretofindimage', 'media/com_jtrax/imag
 <?php endif; ?>
 
 <!-- Search form -->
-<form name="searchForm" action="<?php echo Route::_('index.php?option=com_jtrax&view=jtrax'); ?>" method="get">
+<form name="input" action="<?php echo Route::_('index.php?option=com_jtrax'); ?>" method="post" class="mb-3">
     <?php echo HTMLHelper::_('form.token'); ?>
-    <?php echo htmlspecialchars($this->params->get('label', Text::_('COM_JTRAX_SEARCH_LABEL')), ENT_QUOTES, 'UTF-8'); ?>
-    <input type="text" name="code" maxlength="31" value="<?php echo htmlspecialchars($this->searchterm ?? '', ENT_QUOTES, 'UTF-8'); ?>" />
-    <input type="submit" value="<?php echo htmlspecialchars($this->params->get('button', Text::_('COM_JTRAX_SEARCH_BUTTON')), ENT_QUOTES, 'UTF-8'); ?>" />
+    <label for="code"><?php echo $params->get('label', Text::_('COM_JTRAX_SEARCH_LABEL')); ?></label>
+    <input type="text" name="code" id="code" maxlength="31" value="<?php echo htmlspecialchars($this->searchterm ?? '', ENT_QUOTES, 'UTF-8'); ?>" class="form-control d-inline-block w-auto" />
+    <input type="submit" value="<?php echo $params->get('button', Text::_('COM_JTRAX_SEARCH_BUTTON')); ?>" class="btn btn-primary" />
 </form>
 
-<!-- Results -->
-<?php if (!empty($this->information)) : ?>
+<!-- Search results -->
+<?php if (!empty($this->information) && is_array($this->information)) : ?>
     <p><?php echo Text::_('COM_JTRAX_RESULTS_FOR') . ' ' . htmlspecialchars($this->searchterm, ENT_QUOTES, 'UTF-8'); ?></p>
-
-    <table class="results" style="width:100%">
+    <table class="table table-striped table-hover">
         <thead>
             <tr>
-                <th style="width:30%"><?php echo Text::_('COM_JTRAX_RESULTS_DATE'); ?></th>
+                <th><?php echo Text::_('COM_JTRAX_RESULTS_DATE'); ?></th>
                 <th><?php echo Text::_('COM_JTRAX_RESULTS_STATUS'); ?></th>
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($this->information as $el) :
-                $date = new DateTime($el->datetime);
-            ?>
+            <?php foreach ($this->information as $el): ?>
                 <tr>
-                    <td class="time" style="width:30%"><?php echo $date->format('d/m/Y'); ?></td>
-                    <td class="status"><?php echo htmlspecialchars($el->status, ENT_QUOTES, 'UTF-8'); ?></td>
+                    <?php
+                        $date = explode('-', $el->datetime);
+                        $formattedDate = isset($date[2], $date[1], $date[0]) ? $date[2] . '/' . $date[1] . '/' . $date[0] : $el->datetime;
+                    ?>
+                    <td><?php echo $formattedDate; ?></td>
+                    <td><?php echo htmlspecialchars($el->status, ENT_QUOTES, 'UTF-8'); ?></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
     </table>
-<?php elseif (isset($this->searchterm) && $this->searchterm !== '') : ?>
-    <p><?php echo Text::_('COM_JTRAX_NO_RESULTS'); ?></p>
 <?php endif; ?>
