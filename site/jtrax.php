@@ -10,7 +10,7 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-use \Joomla\CMS\Factory;
+use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\BaseController;
 
 $controller = BaseController::getInstance('JTrax');

@@ -13,9 +13,11 @@
 defined('_JEXEC') or die;
 
 use Joomla\CMS\Factory;
-use \Joomla\CMS\Form\Field\ListField;
-use \Joomla\CMS\Form\FormHelper;
+use Joomla\CMS\Form\Field\ListField;
+use Joomla\CMS\Form\FormHelper;
 use Joomla\CMS\HTML\HTMLHelper;
+
+\defined('_JEXEC') or die;
 
 FormHelper::loadFieldClass('list');
 
@@ -24,6 +26,8 @@ FormHelper::loadFieldClass('list');
  *
  * @since  0.0.1
  */
+ 
+class ComponentsJtraxField extends ListField
 {
 	/**
 	 * The field type.

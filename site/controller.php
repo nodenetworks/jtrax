@@ -11,6 +11,8 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\MVC\Controller\BaseController;
+use Joomla\CMS\MVC\Controller\BaseController;
+
+class JtraxController extends BaseController
 {
 }

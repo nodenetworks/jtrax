@@ -10,11 +10,12 @@
 -------------------------------------------------------------------------*/
 
 // No direct access to this file
-defined('_JEXEC') or die;
-use \Joomla\CMS\HTML\HTMLHelper;
-use \Joomla\CMS\Language\Text;
-use \Joomla\CMS\Layout\LayoutHelper;
-use \Joomla\CMS\Router\Route;
+defined('_JEXEC') or die('Restricted access');
+
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Layout\LayoutHelper;
+use Joomla\CMS\Router\Route;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('behavior.multiselect');

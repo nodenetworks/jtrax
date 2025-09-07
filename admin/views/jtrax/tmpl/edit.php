@@ -11,9 +11,9 @@
 
 // No direct access
 defined('_JEXEC') or die('Restricted access');
-use \Joomla\CMS\HTML\HTMLHelper;
-use \Joomla\CMS\Router\Route;
-use \Joomla\CMS\Language\Text;
+use Joomla\CMS\HTML\HTMLHelper;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Language\Text;
 
 HTMLHelper::_('bootstrap.tooltip');
 HTMLHelper::_('formbehavior.chosen', 'select');

@@ -11,53 +11,64 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\Factory;
-use \Joomla\CMS\MVC\Model\ItemModel;
-{
-	protected $searchterm;
- 	public function getSearchterm() 
-	{
-		$jinput = Factory::getApplication()->input;
-		$this->searchterm = $jinput->get('code','','STRING');
-		return $this->searchterm;
-	}
-	
-	protected $information;
- 	public function getInformation() 
-	{
-		$db =Factory::getDbo();
-		$query = $db->getQuery(true);
-		
-		$query->select('*');
-		$query->from('#__jtrax');
-		$query->where('code = "'.$this->searchterm.'"')
-		      ->where('published = "1"');
-		$db->setQuery($query);
-		$this->information = $db->loadObjectList();
-		return $this->information;
-	}
-	public function getItem($pk = null)
-{
-    $pk = (!empty($pk)) ? $pk : (int) $this->getState('jtrax.id');
+use Joomla\CMS\Factory;
+use Joomla\CMS\MVC\Model\ItemModel;
 
-    if ($pk === 0) {
-        return false; // No valid primary key
+class JtraxModelJtrax extends ItemModel
+{
+    protected $searchterm;
+
+    // Get search term from input
+    public function getSearchterm() 
+    {
+        $app = Factory::getApplication();
+        $this->searchterm = $app->input->getString('code', ''); // match your frontend form input name
+        return $this->searchterm;
     }
 
-    // Load the item from the database
-    $db = $this->getDbo();
-    $query = $db->getQuery(true)
-        ->select('*')
-        ->from($db->quoteName('#__jtrax'))
-        ->where($db->quoteName('id') . ' = ' . (int) $pk);
-    $db->setQuery($query);
+    // Get information based on search term
+    public function getInformation() 
+    {
+        // Make sure searchterm is set
+        $search = $this->getSearchterm();
+        if (empty($search)) {
+            return [];
+        }
 
-    $item = $db->loadObject();
+        $db = $this->getDbo();
+        $query = $db->getQuery(true);
 
-    if (!$item) {
-        throw new Exception('Item not found', 404);
-		}
+        $query->select('*')
+              ->from($db->quoteName('#__jtrax'))
+              ->where($db->quoteName('code') . ' = ' . $db->quote($search))
+              ->where($db->quoteName('published') . ' = 1');
 
-    return $item;
-}
+        $db->setQuery($query);
+
+        return $db->loadObjectList();
+    }
+
+    public function getItem($pk = null)
+    {
+        $pk = (!empty($pk)) ? $pk : (int) $this->getState('jtrax.id');
+
+        if ($pk === 0) {
+            return false;
+        }
+
+        $db = $this->getDbo();
+        $query = $db->getQuery(true)
+            ->select('*')
+            ->from($db->quoteName('#__jtrax'))
+            ->where($db->quoteName('id') . ' = ' . (int) $pk);
+
+        $db->setQuery($query);
+        $item = $db->loadObject();
+
+        if (!$item) {
+            throw new Exception('Item not found', 404);
+        }
+
+        return $item;
+    }
 }
