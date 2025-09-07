@@ -10,73 +10,56 @@
 -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
-use Joomla\CMS\Factory;
-use Joomla\CMS\MVC\Model\ItemModel;
 
-class JtraxModelJtrax extends ItemModel
+use Joomla\CMS\MVC\Model\AdminModel;
+
+class JtraxModelJtrax extends AdminModel
 {
     /**
-     * Get the search term from input
+     * Get the table
      *
-     * @return string
+     * @param   string $type   Table type
+     * @param   string $prefix Table class prefix
+     * @param   array  $config Configuration array
+     *
+     * @return  \Joomla\CMS\Table\Table
      */
-    public function getSearchterm()
+    public function getTable($type = 'Jtrax', $prefix = 'JtraxTable', $config = array())
     {
-        $jinput = Factory::getApplication()->input;
-        return $jinput->getString('code', '');
+        return parent::getTable($type, $prefix, $config);
     }
 
     /**
-     * Get information (tracking results) based on code
+     * Get the form for editing/creating
      *
-     * @param string $code
-     * @return array
-     */
-    public function getInformation($code = '')
-    {
-        if (empty($code)) {
-            return [];
-        }
-
-        $db = $this->getDbo();
-        $query = $db->getQuery(true)
-            ->select('*')
-            ->from($db->quoteName('#__jtrax'))
-            ->where($db->quoteName('code') . ' = ' . $db->quote($code))
-            ->where($db->quoteName('published') . ' = 1');
-        $db->setQuery($query);
-
-        return $db->loadObjectList();
-    }
-
-    /**
-     * Get a single item by primary key
+     * @param   array   $data      Data for the form
+     * @param   boolean $loadData  Load the form data from the model state
      *
-     * @param int $pk
-     * @return object|false
-     * @throws Exception
+     * @return  \Joomla\CMS\Form\Form|false
      */
-    public function getItem($pk = null)
+    public function getForm($data = array(), $loadData = true)
     {
-        $pk = !empty($pk) ? (int)$pk : (int)$this->getState('jtrax.id');
+        $form = $this->loadForm(
+            'com_jtrax.jtrax',
+            'jtrax',
+            array('control' => 'jform', 'load_data' => $loadData)
+        );
 
-        if ($pk === 0) {
+        if (empty($form)) {
             return false;
         }
 
-        $db = $this->getDbo();
-        $query = $db->getQuery(true)
-            ->select('*')
-            ->from($db->quoteName('#__jtrax'))
-            ->where($db->quoteName('id') . ' = ' . (int)$pk);
-        $db->setQuery($query);
+        return $form;
+    }
 
-        $item = $db->loadObject();
-
-        if (!$item) {
-            throw new Exception('Item not found', 404);
-        }
-
-        return $item;
+    /**
+     * Load form data
+     *
+     * @return  mixed  Data for the form
+     */
+    protected function loadFormData()
+    {
+        $data = $this->getItem();
+        return $data;
     }
 }

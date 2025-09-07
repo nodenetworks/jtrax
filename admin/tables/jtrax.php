@@ -15,7 +15,7 @@ use \Joomla\CMS\Table\Table;
 
 class JtraxTableJtrax extends Table
 {
-	function __construct(&$db) 
+	public function __construct(&$db) 
 	{
 		parent::__construct('#__jtrax', 'id', $db);
 	}
