@@ -62,7 +62,7 @@ $listDirn      = $this->escape($this->state->get('list.direction'));
 		</thead>
 		<tfoot>
 			<tr>
-				<td colspan="5">
+				<td colspan="7">
 					<?php echo $this->pagination->getListFooter(); ?>
 				</td>
 			</tr>
