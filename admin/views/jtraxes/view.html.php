@@ -11,17 +11,23 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 
+/**
+ * View class for a list of tracking codes.
+ */
 class JtraxViewJtraxes extends BaseHtmlView
 {
     protected $items;
     protected $pagination;
     protected $state;
-    protected $filterForm;
-    protected $activeFilters;
+    public $filterForm;
+    public $activeFilters;
 
+    /**
+     * Display the view
+     */
     public function display($tpl = null)
     {
         $this->items         = $this->get('Items');
@@ -30,20 +36,31 @@ class JtraxViewJtraxes extends BaseHtmlView
         $this->filterForm    = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
 
-        // Add toolbar
+        // Check for errors.
+        if (count($errors = $this->get('Errors')))
+        {
+            throw new Exception(implode("\n", $errors), 500);
+        }
+
+        // Add the toolbar
         $this->addToolbar();
 
         parent::display($tpl);
     }
 
+    /**
+     * Add the page title and toolbar.
+     */
     protected function addToolbar()
     {
-        ToolbarHelper::title('JTrax Manager', 'stack');
+        ToolbarHelper::title('JTrax: ' . JText::_('COM_JTRAX_MANAGER_JTRAXES'), 'stack');
 
         ToolbarHelper::addNew('jtrax.add');
         ToolbarHelper::editList('jtrax.edit');
         ToolbarHelper::publish('jtraxes.publish', 'JTOOLBAR_PUBLISH', true);
         ToolbarHelper::unpublish('jtraxes.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-        ToolbarHelper::deleteList('Are you sure?', 'jtraxes.delete');
+        ToolbarHelper::deleteList('Are you sure?', 'jtraxes.delete', 'JTOOLBAR_DELETE');
+
+        ToolbarHelper::preferences('com_jtrax');
     }
 }
