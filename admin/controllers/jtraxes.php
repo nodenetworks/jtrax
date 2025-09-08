@@ -11,9 +11,12 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\MVC\Controller\AdminController;
+use Joomla\CMS\MVC\Controller\AdminController;
+
+class JtraxControllerJtraxes extends AdminController
+
 {
-	public function getModel($name = 'JTrax', $prefix = 'JTraxModel', $config = array('ignore_request' => true))
+	public function getModel($name = 'Jtrax', $prefix = 'JtraxModel', $config = array('ignore_request' => true))
 	{
 		$model = parent::getModel($name, $prefix, $config);
 
