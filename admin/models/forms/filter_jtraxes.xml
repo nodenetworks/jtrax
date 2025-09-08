@@ -14,11 +14,16 @@
 		<!-- Published status dropdown -->
 		<field
 			name="published"
-			type="status"
+			type="list"
 			label="JSTATUS"
-			description="JOPTION_SELECT_PUBLISHED"
-			onchange="this.form.submit();"
-		/>
+			description="COM_JTRAX_FILTER_PUBLISHED_DESC"
+		>
+			<option value="">JALL</option>
+			<option value="1">JPUBLISHED</option>
+			<option value="0">JUNPUBLISHED</option>
+			<option value="-1">JARCHIVED</option>
+			<option value="-2">JTRASHED</option>
+		</field>
 
 	</fields>
 

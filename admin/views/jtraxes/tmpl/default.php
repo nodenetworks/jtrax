@@ -31,7 +31,7 @@ use Joomla\CMS\HTML\HTMLHelper;
     <?php endif; ?>
 
         <?php
-        // ✅ Joomla 4/5 search tools layout
+        // Joomla 4/5 search tools layout
         echo LayoutHelper::render('joomla.searchtools.default', [
             'view' => $this
         ]);
@@ -41,9 +41,9 @@ use Joomla\CMS\HTML\HTMLHelper;
             <thead>
                 <tr>
                     <th width="1%"><?php echo HTMLHelper::_('grid.checkall'); ?></th>
-                    <th><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_CODE', 'a.code', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_DATE', 'a.datetime', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_STATUS', 'a.status', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_CODE', 'a.code', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_DATE', 'a.datetime', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="85%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_STATUS', 'a.status', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
                     <th width="5%"><?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
                     <th width="1%"><?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
                 </tr>
