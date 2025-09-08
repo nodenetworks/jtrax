@@ -12,7 +12,6 @@
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\MVC\Model\ListModel;
-use Joomla\CMS\Factory;
 
 class JtraxModelJtraxes extends ListModel
 {
@@ -40,7 +39,7 @@ class JtraxModelJtraxes extends ListModel
 	protected function getListQuery()
 	{
 		// Initialize variables.
-		$db    = Factory::getDbo();
+		$db    = $this->getDatabase();
 		$query = $db->getQuery(true);
 
 		// Create the base select statement.
