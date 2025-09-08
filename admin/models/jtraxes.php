@@ -15,69 +15,50 @@ use Joomla\CMS\MVC\Model\ListModel;
 
 class JtraxModelJtraxes extends ListModel
 {
-
-	public function __construct($config = array())
-	{
-		if (empty($config['filter_fields'])) {
-			$config['filter_fields'] = [
-				'id',
-				'code',
-				'datetime',
-				'status',
-				'published'
-			];
-		}
-
-		parent::__construct($config);
-	}
-
-	/**
-	 * Method to build an SQL query to load the list data.
-	 *
-	 * @return      string  An SQL query
-	 */
-	protected function getListQuery()
-	{
-		// Initialize variables.
-		$db    = $this->getDatabase();
-		$query = $db->getQuery(true);
-
-		// Create the base select statement.
-		$query->select('*')
-			->from($db->quoteName('#__jtrax'));
-
-		// Filter: like / search
-		$search = $this->getState('filter.search');
-
-		if (!empty($search))
-		{
-			$like = $db->quote('%' . $search . '%');
-			$query->where('code LIKE ' . $like);
-		}
-
-		// Filter by published state
-		$published = $this->getState('filter.published');
-
-		if (is_numeric($published))
-		{
-			$query->where('published = ' . (int) $published);
-		}
-		elseif ($published === '')
-		{
-			$query->where('(published IN (0, 1))');
-		}
-
-		// Add the list ordering clause.
-		$orderCol	= $this->state->get('list.ordering', 'code');
-		$orderDirn 	= $this->state->get('list.direction', 'asc');
-
-		$query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
-
-		return $query;
-	}
-	
-	protected function populateState($ordering = null, $direction = null)
+    public function __construct($config = [])
     {
-        parent::populateState($ordering, $direction);
+        if (empty($config['filter_fields'])) {
+            $config['filter_fields'] = [
+                'id', 'a.id',
+                'code', 'a.code',
+                'datetime', 'a.datetime',
+                'status', 'a.status',
+                'published', 'a.published',
+            ];
+        }
+
+        parent::__construct($config);
+    }
+
+    /**
+     * Build the query for the list
+     */
+    protected function getListQuery()
+    {
+        $db    = $this->getDatabase();
+        $query = $db->getQuery(true);
+
+        $query->select('a.*')
+              ->from($db->quoteName('#__jtrax', 'a'));
+
+        // Search filter
+        $search = $this->getState('filter.search');
+        if (!empty($search)) {
+            $search = '%' . $db->escape($search, true) . '%';
+            $query->where($db->quoteName('a.code') . ' LIKE ' . $db->quote($search));
+        }
+
+        // Published filter
+        $published = $this->getState('filter.published');
+        if (is_numeric($published)) {
+            $query->where($db->quoteName('a.published') . ' = ' . (int) $published);
+        }
+
+        // Ordering
+        $orderCol  = $this->state->get('list.ordering', 'a.id');
+        $orderDirn = $this->state->get('list.direction', 'DESC');
+        $query->order($db->escape($orderCol) . ' ' . $db->escape($orderDirn));
+
+        return $query;
     }
 }
