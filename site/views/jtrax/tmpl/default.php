@@ -9,11 +9,14 @@
 # Technical Support:  https://github.com/nodenetworks/jtrax/
 -------------------------------------------------------------------------*/
 
-defined('_JEXEC') or die;
+defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Router\Route;
+
+// Load Bootstrap 5 framework to ensure modal works
+HTMLHelper::_('bootstrap.framework');
 
 // Extract parameters
 $params = $this->params;
@@ -26,29 +29,30 @@ $wheretofindimage = $params->get('wheretofindimage', 'media/com_jtrax/images/whe
 <!-- Intro text -->
 <p><?php echo $params->get('introtext', Text::_('COM_JTRAX_SEARCH_INTRO_TEXT')); ?></p>
 
-<!-- Where to find modal -->
+<!-- Where to find modal trigger -->
 <?php if ($params->get('wheretofind', '1') == 1): ?>
-<p>
-    <a href="#" data-bs-toggle="modal" data-bs-target="#wheretofindModal">
-        <?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>
-    </a>
-</p>
+    <p>
+        <a href="#" data-bs-toggle="modal" data-bs-target="#wheretofindModal">
+            <?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>
+        </a>
+    </p>
 
-<div class="modal fade" id="wheretofindModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title"><?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo Text::_('JTOOLBAR_CLOSE'); ?>"></button>
-            </div>
-            <div class="modal-body text-center">
-                <img src="<?php echo htmlspecialchars($wheretofindimage, ENT_QUOTES, 'UTF-8'); ?>" 
-                     class="img-fluid" 
-                     alt="<?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>" />
+    <!-- Modal -->
+    <div class="modal fade" id="wheretofindModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"><?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="<?php echo Text::_('JTOOLBAR_CLOSE'); ?>"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="<?php echo htmlspecialchars($wheretofindimage, ENT_QUOTES, 'UTF-8'); ?>" 
+                         class="img-fluid"
+                         alt="<?php echo htmlspecialchars($wheretofindtext, ENT_QUOTES, 'UTF-8'); ?>" />
+                </div>
             </div>
         </div>
     </div>
-</div>
 <?php endif; ?>
 
 <!-- Search form -->
