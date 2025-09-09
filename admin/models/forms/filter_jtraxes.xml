@@ -27,27 +27,4 @@
 
 	</fields>
 
-	<fields name="list">
-		<!-- Default ordering -->
-		<field
-			name="fullordering"
-			type="list"
-			label="JGLOBAL_SORT_BY"
-			description="JGLOBAL_SORT_BY"
-			onchange="this.form.submit();"
-			default="a.id DESC"
-		>
-			<option value="">JGLOBAL_SORT_BY</option>
-			<option value="a.code ASC">COM_JTRAX_LABEL_CODE Asc</option>
-			<option value="a.code DESC">COM_JTRAX_LABEL_CODE Desc</option>
-			<option value="a.datetime ASC">COM_JTRAX_LABEL_DATE Asc</option>
-			<option value="a.datetime DESC">COM_JTRAX_LABEL_DATE Desc</option>
-			<option value="a.status ASC">COM_JTRAX_LABEL_STATUS Asc</option>
-			<option value="a.status DESC">COM_JTRAX_LABEL_STATUS Desc</option>
-			<option value="a.published ASC">JSTATUS Asc</option>
-			<option value="a.published DESC">JSTATUS Desc</option>
-			<option value="a.id ASC">JGRID_HEADING_ID Asc</option>
-			<option value="a.id DESC">JGRID_HEADING_ID Desc</option>
-		</field>
-	</fields>
 </form>

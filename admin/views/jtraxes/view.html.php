@@ -53,7 +53,7 @@ class JtraxViewJtraxes extends BaseHtmlView
      */
     protected function addToolbar()
     {
-        ToolbarHelper::title('JTrax: ' . JText::_('COM_JTRAX_MANAGER_JTRAXES'), 'stack');
+        ToolbarHelper::title(JText::_('COM_JTRAX_TITLE_MAIN'), 'stack');
 
         ToolbarHelper::addNew('jtrax.add');
         ToolbarHelper::editList('jtrax.edit');
