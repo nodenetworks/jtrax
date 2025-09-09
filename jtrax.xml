@@ -38,24 +38,24 @@
 		<folder>images</folder>
 	</media>
 	<languages folder="site/language">
-		<language tag="en-GB">en-GB/en-GB.com_jtrax.ini</language>
-		<language tag="es-ES">es-ES/es-ES.com_jtrax.ini</language>
-		<language tag="it-IT">it-IT/it-IT.com_jtrax.ini</language>
-		<language tag="pl-PL">pl-PL/pl-PL.com_jtrax.ini</language>
+		<language tag="en-GB">en-GB/com_jtrax.ini</language>
+		<language tag="es-ES">es-ES/com_jtrax.ini</language>
+		<language tag="it-IT">it-IT/com_jtrax.ini</language>
+		<language tag="pl-PL">pl-PL/com_jtrax.ini</language>
 	</languages>
 	
 	<!-- Administration Menu Section -->
 	<administration>
 		<menu img="components/com_jtrax/assets/images/icon.gif">COM_JTRAX_MENU</menu>
 		<languages folder="admin/language">
-			<language tag="en-GB">en-GB/en-GB.com_jtrax.ini</language>
-			<language tag="en-GB">en-GB/en-GB.com_jtrax.sys.ini</language>
-			<language tag="es-ES">es-ES/es-ES.com_jtrax.ini</language>
-			<language tag="es-ES">es-ES/es-ES.com_jtrax.sys.ini</language>
-			<language tag="it-IT">it-IT/it-IT.com_jtrax.ini</language>
-			<language tag="it-IT">it-IT/it-IT.com_jtrax.sys.ini</language>
-			<language tag="pl-PL">pl-PL/pl-PL.com_jtrax.ini</language>
-			<language tag="pl-PL">pl-PL/pl-PL.com_jtrax.sys.ini</language>
+			<language tag="en-GB">en-GB/com_jtrax.ini</language>
+			<language tag="en-GB">en-GB/com_jtrax.sys.ini</language>
+			<language tag="es-ES">es-ES/com_jtrax.ini</language>
+			<language tag="es-ES">es-ES/com_jtrax.sys.ini</language>
+			<language tag="it-IT">it-IT/com_jtrax.ini</language>
+			<language tag="it-IT">it-IT/com_jtrax.sys.ini</language>
+			<language tag="pl-PL">pl-PL/com_jtrax.ini</language>
+			<language tag="pl-PL">pl-PL/com_jtrax.sys.ini</language>
 		</languages>
 		<files folder="admin">
 			<filename>index.html</filename>
