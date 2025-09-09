@@ -67,8 +67,8 @@
 			description="COM_JTRAX_DESC_WHERETOFIND"
 			default="1"
 		>
-			<option value="0">JYES</option>
-			<option value="1">JNO</option>
+			<option value="1">JYES</option>
+			<option value="0">JNO</option>
 		</field>
 		<field
 			name="wheretofindtext"
