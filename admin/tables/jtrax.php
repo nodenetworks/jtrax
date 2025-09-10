@@ -11,12 +11,20 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use \Joomla\CMS\Table\Table;
+use Joomla\CMS\Table\Table;
 
 class JtraxTableJtrax extends Table
 {
-	public function __construct(&$db) 
-	{
-		parent::__construct('#__jtrax', 'id', $db);
-	}
+    public $id = 0;
+	public $datetime = null;
+    public $code = '';
+	public $status_id = 0;   // foreign key to #__jtrax_statuses	
+	public $status = '';
+    public $notes = null;
+    public $published = 1;
+    
+    public function __construct(&$db)
+    {
+        parent::__construct('#__jtrax', 'id', $db);
+    }
 }
