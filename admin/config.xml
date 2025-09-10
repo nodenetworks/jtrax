@@ -70,6 +70,15 @@
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</field>
+            <field 
+            name="enable_notes" 
+            type="radio" 
+            label="COM_JTRAX_ENABLE_NOTES"
+            description="COM_JTRAX_ENABLE_NOTES_DESC"
+            default="1">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
 		<field
 			name="wheretofindtext"
 			type="text"
