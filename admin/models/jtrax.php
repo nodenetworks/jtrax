@@ -62,4 +62,17 @@ class JtraxModelJtrax extends AdminModel
         $data = $this->getItem();
         return $data;
     }
+	
+	/** Load statuses list for dropdown */
+    public function getStatuses()
+    {
+		$db = $this->getDbo();
+        $query = $db->getQuery(true)
+            ->select('id AS value, title AS text')
+            ->from($db->quoteName('#__jtrax_statuses'))
+            ->order('title ASC');
+        $db->setQuery($query);
+
+        return $db->loadObjectList();
+    }
 }
