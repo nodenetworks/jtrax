@@ -43,7 +43,7 @@ class ComponentsJtraxField extends ListField
 	{
 		$db    = Factory::getDBO();
 		$query = $db->getQuery(true);
-		$query->select('id,code,datetime,status');
+		$query->select('id,code,status_id,datetime,status,notes');
 		$query->from('#__jtrax');
 		$db->setQuery((string) $query);
 		$messages = $db->loadObjectList();
