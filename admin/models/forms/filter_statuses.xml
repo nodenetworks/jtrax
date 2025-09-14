@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	<fields name="filter">
+		
+		<!-- Search box -->
+		<field
+			name="search"
+			type="text"
+			label="JSEARCH_FILTER"
+			hint="JSEARCH_FILTER"
+			class="js-stools-search-string"
+		/>
+
+		<!-- Published status dropdown -->
+		<field
+			name="published"
+			type="status"
+			label="JOPTION_SELECT_PUBLISHED"
+			class="js-select-submit-on-change"
+			extension="com_jtrax"
+			>
+			<option value="">JOPTION_SELECT_PUBLISHED</option>
+		</field>
+
+	</fields>
+
+</form>

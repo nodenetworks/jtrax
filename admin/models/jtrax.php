@@ -70,6 +70,7 @@ class JtraxModelJtrax extends AdminModel
         $query = $db->getQuery(true)
             ->select('id AS value, title AS text')
             ->from($db->quoteName('#__jtrax_statuses'))
+			->where($db->quoteName('published') . ' = 1')
             ->order('title ASC');
         $db->setQuery($query);
 

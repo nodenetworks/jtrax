@@ -19,7 +19,8 @@ class JtraxTableJtrax extends Table
 	public $datetime = null;
     public $code = '';
 	public $status_id = 0;   // foreign key to #__jtrax_statuses	
-	public $status = '';
+    public $status = '';
+    public $details = '';
     public $notes = null;
     public $published = 1;
     

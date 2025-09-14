@@ -1,34 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<form>
-	<fieldset>
-		<field
-			name="id"
-			type="hidden"
-		/>
-		<field
-			name="code"
-			type="text"
-			label="COM_JTRAX_LABEL_CODE"
-			description="COM_JTRAX_DESCRIPTION_CODE"
-			size="10"
-			class="inputbox"
-			default=""
-		/>
-		<field
-			name="status"
-			type="text"
-			label="COM_JTRAX_LABEL_STATUS"
-			description="COM_JTRAX_DESCRIPTION_STATUS"
-			size="40"
-			class="inputbox"
-			default=""
-		/>
-		<field
-			name="datetime"
-			type="calendar"
-			label="COM_JTRAX_LABEL_DATE"
-			class="inputbox"
-			default="NOW"
-		/>
-	</fieldset>
+<form name="jtrax">
+    <fieldset name="basic">
+        <field name="id" type="hidden" />
+        <field name="code" type="text" label="COM_JTRAX_FIELD_CODE" description="COM_JTRAX_DESCRIPTION_CODE" size="10" class="inputbox" default="" />
+        <field name="datetime" type="calendar" label="COM_JTRAX_FIELD_DATE" class="inputbox" default="NOW" />
+        <!-- Status dropdown populated from DB -->
+        <field name="status_id" type="sql" label="COM_JTRAX_FIELD_STATUS" description="COM_JTRAX_FIELD_STATUS_DESC" required="true"
+               query="SELECT id AS status_id, title AS status FROM #__jtrax_statuses WHERE published = 1 ORDER BY title ASC"
+               key_field="status_id" value_field="status" translate="false">
+            <option value="">COM_JTRAX_SELECT_STATUS</option>
+        </field>
+        <field name="details" type="text" label="COM_JTRAX_FIELD_DETAILS" description="COM_JTRAX_DESCRIPTION_DETAILS" size="40" class="inputbox" default="" />
+        <field name="notes" type="textarea" label="COM_JTRAX_FIELD_NOTES" description="COM_JTRAX_FIELD_NOTES_DESC" rows="5" cols="40" filter="safehtml" />
+    </fieldset>
 </form>

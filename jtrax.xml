@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.5" method="upgrade">
 	<name>COM_JTRAX</name>
-	<creationDate>08 September 2025</creationDate>
+	<creationDate>14 September 2025</creationDate>
 	<author>Michał Ostrykiewicz</author>
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
