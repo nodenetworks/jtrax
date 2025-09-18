@@ -16,7 +16,7 @@ CREATE TABLE `#__jtrax_statuses` (
     `id` int(11) NOT NULL AUTO_INCREMENT,
     `title` varchar(255) NOT NULL,
 	`ordering` int(11) NOT NULL DEFAULT 0,
-	`published` int(4) NOT NULL DEFAULT 1
+	`published` int(4) NOT NULL DEFAULT 1,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 DEFAULT COLLATE=utf8mb4_unicode_ci;
 
