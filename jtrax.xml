@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<extension type="component" version="3.5" method="upgrade">
+<extension type="component" version="5.0" method="upgrade">
 	<name>COM_JTRAX</name>
 	<creationDate>14 September 2025</creationDate>
 	<author>Michał Ostrykiewicz</author>
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
+	<authorUrl></authorUrl>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
 	<license>GNU General Public License v2</license>
 	<version>2.0.0</version>
@@ -56,16 +57,12 @@
 			<menu
 				link="option=com_jtrax"
 				view="jtrax"
-				img="class:banners"
-				alt="Banners/Banners"
 				>
 				COM_JTRAX_MENU_CODES
 			</menu>
 			<menu
 				link="option=com_jtrax&amp;view=statuses"
 				view="statuses"
-				img="class:banners-cat"
-				alt="Banners/Categories"
 				>
 				COM_JTRAX_MENU_STATUSES
 			</menu>
