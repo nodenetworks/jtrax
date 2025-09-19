@@ -26,7 +26,7 @@ HTMLHelper::_('formbehavior.chosen', 'select');
             <legend><?php echo Text::_('COM_JTRAX_LEGEND_DETAILS'); ?></legend>
             <div class="row-fluid">
                 <div class="span6">
-                    <?php foreach ($this->form->getFieldset() as $field): ?>
+                    <?php foreach ($this->form->getFieldset('basic') as $field): ?>
                         <div class="control-group">
                             <div class="control-label"><?php echo $field->label; ?></div>
                             <div class="controls"><?php echo $field->input; ?></div>

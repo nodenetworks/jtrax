@@ -24,6 +24,14 @@ $params = $this->params;
 // Where-to-find text and image
 $wheretofindtext = $params->get('wheretofindtext', Text::_('COM_JTRAX_SEARCH_WHERE_TO_FIND'));
 $wheretofindimage = $params->get('wheretofindimage', 'media/com_jtrax/images/wheretofind.jpg');
+
+// Build a lookup map of status id -> title for display (if statuses provided by the view)
+$statusMap = [];
+if (!empty($this->statuses) && is_array($this->statuses)) {
+    foreach ($this->statuses as $s) {
+        $statusMap[(int) $s->id] = $s->title;
+    }
+}
 ?>
 
 <!-- Intro text -->
@@ -71,6 +79,12 @@ $wheretofindimage = $params->get('wheretofindimage', 'media/com_jtrax/images/whe
             <tr>
                 <th><?php echo Text::_('COM_JTRAX_RESULTS_DATE'); ?></th>
                 <th><?php echo Text::_('COM_JTRAX_RESULTS_STATUS'); ?></th>
+                <?php if (!empty($this->showDetails)): ?>
+                    <th><?php echo Text::_('COM_JTRAX_RESULTS_STATUS_DETAILS'); ?></th>
+                <?php endif; ?>
+                <?php if ($params->get('enable_notes', 1)): ?>
+                    <th><?php echo Text::_('COM_JTRAX_RESULTS_NOTES'); ?></th>
+                <?php endif; ?>
             </tr>
         </thead>
         <tbody>
@@ -81,9 +95,15 @@ $wheretofindimage = $params->get('wheretofindimage', 'media/com_jtrax/images/whe
                         $formattedDate = isset($date[2], $date[1], $date[0]) ? $date[2] . '/' . $date[1] . '/' . $date[0] : $el->datetime;
                     ?>
                     <td><?php echo $formattedDate; ?></td>
-                    <td><?php echo htmlspecialchars($el->status, ENT_QUOTES, 'UTF-8'); ?></td>
-                </tr>
-            <?php endforeach; ?>
+                    <td><?php echo htmlspecialchars($statusMap[(int) $el->status_id] ?? ($el->status ?? ''), ENT_QUOTES, 'UTF-8'); ?></td>
+                    <?php if (!empty($this->showDetails)): ?>
+                        <td><?php echo htmlspecialchars($el->status ?? '', ENT_QUOTES, 'UTF-8'); ?></td>
+                    <?php endif; ?>
+                    <?php if ($params->get('enable_notes', 1)): ?>
+                        <td><?php echo nl2br(htmlspecialchars($el->notes ?? '', ENT_QUOTES, 'UTF-8')); ?></td>
+                    <?php endif; ?>
+                 </tr>
+             <?php endforeach; ?>
         </tbody>
     </table>
 <?php endif; ?>

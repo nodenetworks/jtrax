@@ -1,36 +1,33 @@
 <?php
 /*------------------------------------------------------------------------
-# JTrax
-# ------------------------------------------------------------------------
-# author    Michał Ostrykiewicz
-# copyright Copyright (C) 2010 Giovanni Mansillo. All Rights Reserved.
-# copyright Copyright (C) 2020 - 2025 Michał Ostrykiewicz. All rights reserved.
-# @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
-# Technical Support:  https://github.com/nodenetworks/jtrax/
--------------------------------------------------------------------------*/
+ # JTrax
+ # ------------------------------------------------------------------------
+ # author    Michał Ostrykiewicz
+ # copyright Copyright (C) 2025 Michał Ostrykiewicz. All rights reserved.
+ # @license - http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL
+ # Technical Support:  https://github.com/nodenetworks/jtrax/
+ -------------------------------------------------------------------------*/
 
 defined('_JEXEC') or die('Restricted access');
 
 use Joomla\CMS\MVC\Model\ListModel;
 use Joomla\CMS\Factory;
 
-class JtraxModelJtraxes extends ListModel
+class JtraxModelStatuses extends ListModel
 {
     public function __construct($config = [])
     {
         if (empty($config['filter_fields'])) {
             $config['filter_fields'] = [
                 'id', 'a.id',
-                'code', 'a.code',
-                'datetime', 'a.datetime',
-                'status', 'a.status',
+                'title', 'a.title',
                 'published', 'a.published',
             ];
         }
 
         parent::__construct($config);
     }
-		
+
 	protected function populateState($ordering = null, $direction = null)
     {
         $app = Factory::getApplication();
@@ -41,28 +38,25 @@ class JtraxModelJtraxes extends ListModel
 
 		$published = $app->getUserStateFromRequest($this->context . '.filter.published', 'filter_published', '');
         $this->setState('filter.published', $published);
-
         parent::populateState($ordering, $direction);
     }
 
-    public function getListQuery()
+    protected function getListQuery()
     {
         $db = $this->getDatabase();
         $query = $db->getQuery(true);
 
+        // Select all columns and ensure a 'published' property exists (default to 1 if column missing)
         $query->select('a.*')
-              ->from($db->quoteName('#__jtrax', 'a'));
-
-		// Join with statuses table for status text
-		$query->select('s.title AS status_title')
-		->join('LEFT', '#__jtrax_statuses AS s ON s.id = a.status_id');
+              ->select('COALESCE(a.published, 1) AS published')
+              ->from($db->quoteName('#__jtrax_statuses', 'a'));
 
         // Apply search filter
 		$search = $this->state->get('filter.search');
         if (!empty($search))
 		{
             $search = '%' . $db->escape($search, true) . '%';
-            $query->where('a.code LIKE ' . $db->quote($search));
+            $query->where('a.title LIKE ' . $db->quote($search));
         }
 
         // Apply published filter
@@ -72,8 +66,8 @@ class JtraxModelJtraxes extends ListModel
             $query->where('a.published = ' . (int) $published);
         }
 		// Ordering
-        $orderCol  = $this->state->get('list.ordering', 'a.id');
-        $orderDirn = $this->state->get('list.direction', 'DESC');
+        $orderCol  = $this->state->get('list.ordering', 'a.title');
+        $orderDirn = $this->state->get('list.direction', 'ASC');
         $query->order($db->escape($orderCol . ' ' . $orderDirn));
 
         return $query;

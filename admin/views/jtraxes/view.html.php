@@ -11,8 +11,10 @@
 
 defined('_JEXEC') or die('Restricted access');
 
-use Joomla\CMS\Toolbar\ToolbarHelper;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
+use Joomla\CMS\Toolbar\ToolbarHelper;
+use Joomla\CMS\Language\Text;
+use Joomla\CMS\Factory;
 
 /**
  * View class for a list of tracking codes.
@@ -30,16 +32,18 @@ class JtraxViewJtraxes extends BaseHtmlView
      */
     public function display($tpl = null)
     {
-        $this->items         = $this->get('Items');
-        $this->pagination    = $this->get('Pagination');
-        $this->state         = $this->get('State');
-        $this->filterForm    = $this->get('FilterForm');
+        $this->items		 = $this->get('Items');
+        $this->pagination	 = $this->get('Pagination');
+        $this->state		 = $this->get('State');
+        $this->filterForm	 = $this->get('FilterForm');
         $this->activeFilters = $this->get('ActiveFilters');
 
         // Check for errors.
-        if (count($errors = $this->get('Errors')))
-        {
-            throw new Exception(implode("\n", $errors), 500);
+        if ($errors = $this->get('Errors'))
+		{
+            foreach ($errors as $error) {
+                Factory::getApplication()->enqueueMessage($error, 'error');
+            }
         }
 
         // Add the toolbar
@@ -53,13 +57,13 @@ class JtraxViewJtraxes extends BaseHtmlView
      */
     protected function addToolbar()
     {
-        ToolbarHelper::title(JText::_('COM_JTRAX_TITLE_MAIN'), 'stack');
+        ToolbarHelper::title(Text::_('COM_JTRAX_TITLE_MAIN'), 'stack');
 
         ToolbarHelper::addNew('jtrax.add');
         ToolbarHelper::editList('jtrax.edit');
         ToolbarHelper::publish('jtraxes.publish', 'JTOOLBAR_PUBLISH', true);
         ToolbarHelper::unpublish('jtraxes.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-        ToolbarHelper::deleteList('Are you sure?', 'jtraxes.delete', 'JTOOLBAR_DELETE');
+        ToolbarHelper::deleteList(Text::_('COM_JTRAX_DELETE_QUESTION'), 'jtraxes.delete', 'JTOOLBAR_DELETE');
 
         ToolbarHelper::preferences('com_jtrax');
     }

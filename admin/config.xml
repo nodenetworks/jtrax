@@ -8,20 +8,20 @@
 		<field
 			name="introtext"
 			type="textarea"
-			label="COM_JTRAX_LABEL_INTROTEXT"
+			label="COM_JTRAX_FIELD_INTROTEXT"
 			rows="10" cols="70"
 			description="COM_JTRAX_DESCRIPTION_INTROTEXT"
 		/>
 		<field
 			name="button"
 			type="text"
-			label="COM_JTRAX_LABEL_SEARCHBUTTON"
+			label="COM_JTRAX_FIELD_SEARCHBUTTON"
 			description="COM_JTRAX_DESCRIPTION_SEARCHBUTTON"
 		/>
 		<field
 			name="label"
 			type="text"
-			label="COM_JTRAX_LABEL_LABEL"
+			label="COM_JTRAX_FIELD_LABEL"
 			description="COM_JTRAX_DESCRIPTION_LABEL"
 		/>
 	</fieldset>
@@ -33,7 +33,7 @@
 		<field
 			name="timetable"
 			type="radio"
-			label="COM_JTRAX_LABEL_TIMETABLE"
+			label="COM_JTRAX_FIELD_TIMETABLE"
 			description="COM_JTRAX_DESCRIPTION_TIMETABLE"
 			default="0"
 		>
@@ -44,7 +44,7 @@
 			name="openingtime"
 			type="integer"
 			default="1"
-			label="COM_JTRAX_LABEL_OPENINGTIME"
+			label="COM_JTRAX_FIELD_OPENINGTIME"
 			description="COM_JTRAX_DESCRIPTION_OPENINGTIME"
 			first="0"
 			last="23"
@@ -54,7 +54,7 @@
 			name="duration"
 			type="integer"
 			default="12"
-			label="COM_JTRAX_LABEL_DURINGTIME"
+			label="COM_JTRAX_FIELD_DURINGTIME"
 			description="COM_JTRAX_DESC_DURINGTIME"
 			first="1"
 			last="23"
@@ -63,23 +63,41 @@
 		<field
 			name="wheretofind"
 			type="radio"
-			label="COM_JTRAX_LABEL_WHERETOFIND"
+			label="COM_JTRAX_FIELD_WHERETOFIND"
 			description="COM_JTRAX_DESC_WHERETOFIND"
 			default="1"
 		>
 			<option value="1">JYES</option>
 			<option value="0">JNO</option>
 		</field>
+            <field 
+            name="enable_details" 
+            type="radio" 
+            label="COM_JTRAX_ENABLE_DETAILS"
+            description="COM_JTRAX_ENABLE_DETAILS_DESC"
+            default="1">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
+		<field 
+            name="enable_notes" 
+            type="radio" 
+            label="COM_JTRAX_ENABLE_NOTES"
+            description="COM_JTRAX_ENABLE_NOTES_DESC"
+            default="1">
+            <option value="1">JYES</option>
+            <option value="0">JNO</option>
+        </field>
 		<field
 			name="wheretofindtext"
 			type="text"
-			label="COM_JTRAX_LABEL_WHERETOFIND_TEXT"
+			label="COM_JTRAX_FIELD_WHERETOFIND_TEXT"
 			description="COM_JTRAX_DESC_WHERETOFIND_TEXT"
 		/>
 		<field
 			name="wheretofindimage"
 			type="media"
-			label="COM_JTRAX_LABEL_WHERETOFIND_IMG"
+			label="COM_JTRAX_FIELD_WHERETOFIND_IMG"
 			description="COM_JTRAX_DESC_WHERETOFIND_IMG"
 		/>
 	</fieldset>
@@ -91,7 +109,7 @@
 		<field
 			name="errClose"
 			type="textarea"
-			label="COM_JTRAX_LABEL_CLOSE"
+			label="COM_JTRAX_FIELD_CLOSE"
 			description="COM_JTRAX_DESC_CLOSE"
 			rows="10" cols="70"
 		/>
@@ -100,7 +118,7 @@
 			type="textarea"
 			rows="10"
 			cols="70"
-			label="COM_JTRAX_LABEL_INVALID_CODE"
+			label="COM_JTRAX_FIELD_INVALID_CODE"
 			description="COM_JTRAX_DESC_INVALID_CODE"
 		/>
 	</fieldset>

@@ -14,6 +14,8 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\HTML\HTMLHelper;
 use Joomla\CMS\Language\Text;
+use Joomla\CMS\Router\Route;
+use Joomla\CMS\Component\ComponentHelper;
 use Joomla\CMS\MVC\View\HtmlView as BaseHtmlView;
 use Joomla\CMS\Session\Session;
 use Joomla\CMS\Log\Log;
@@ -32,9 +34,13 @@ class JtraxViewJtrax extends BaseHtmlView
     {
         $app = Factory::getApplication();
 
-        // Load component parameters
-        $this->params = $app->getParams();
+        // Load component params (ignore menu item overrides so the global component option controls display)
+        $componentParams = ComponentHelper::getParams('com_jtrax');
+        $this->params = $componentParams;
         $this->pageclass_sfx = htmlspecialchars($this->params->get('pageclass_sfx', ''), ENT_QUOTES, 'UTF-8');
+
+        // Compute boolean for showing details from component params (component option wins)
+        $this->showDetails = (bool) $componentParams->get('enable_details', 1);
 
         // Load the search term from input
         $input = $app->input;
@@ -76,6 +82,13 @@ class JtraxViewJtrax extends BaseHtmlView
                 $model = $this->getModel();
                 if ($model) {
                     $this->information = $model->getInformation($this->searchterm);
+
+                    // Expose available statuses to the view for the frontend select
+                    try {
+                        $this->statuses = $model->getStatuses();
+                    } catch (\Exception $e) {
+                        $this->statuses = [];
+                    }
                 }
 
                 if (empty($this->information)) {

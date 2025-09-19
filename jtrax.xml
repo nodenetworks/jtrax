@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="3.5" method="upgrade">
 	<name>COM_JTRAX</name>
-	<creationDate>08 September 2025</creationDate>
+	<creationDate>14 September 2025</creationDate>
 	<author>Michał Ostrykiewicz</author>
 	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
@@ -11,6 +11,7 @@
 	<update> 
 		<schemas>
 			<schemapath type="mysql">sql/updates/mysql</schemapath>
+			<schemapath type="postgresql">sql/updates/postgresql</schemapath>
 		</schemas>
 	</update>
 	<install> <!-- Runs on install -->
@@ -47,6 +48,29 @@
 	<!-- Administration Menu Section -->
 	<administration>
 		<menu img="components/com_jtrax/assets/images/icon.gif">COM_JTRAX_MENU</menu>
+		<submenu>
+			<!--
+				Note that all & must be escaped to &amp; for the file to be valid
+				XML and be parsed by the installer
+			-->
+			<menu
+				link="option=com_jtrax"
+				view="jtrax"
+				img="class:banners"
+				alt="Banners/Banners"
+				>
+				COM_JTRAX_MENU_CODES
+			</menu>
+			<menu
+				link="option=com_jtrax&amp;view=statuses"
+				view="statuses"
+				img="class:banners-cat"
+				alt="Banners/Categories"
+				>
+				COM_JTRAX_MENU_STATUSES
+			</menu>
+		</submenu>
+
 		<languages folder="admin/language">
 			<language tag="en-GB">en-GB/com_jtrax.ini</language>
 			<language tag="en-GB">en-GB/com_jtrax.sys.ini</language>

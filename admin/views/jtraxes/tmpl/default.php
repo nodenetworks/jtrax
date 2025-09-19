@@ -16,10 +16,11 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Language\Text;
 use Joomla\CMS\Layout\LayoutHelper;
 use Joomla\CMS\HTML\HTMLHelper;
-																
+use Joomla\CMS\Router\Route;
+
 ?>
 
-<form action="<?php echo JRoute::_('index.php?option=com_jtrax&view=jtraxes'); ?>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo Route::_('index.php?option=com_jtrax&view=jtraxes'); ?>" method="post" name="adminForm" id="adminForm">
 
     <?php if (!empty($this->sidebar)) : ?>
         <div id="j-sidebar-container" class="col-md-2">
@@ -41,11 +42,13 @@ use Joomla\CMS\HTML\HTMLHelper;
             <thead>
                 <tr>
                     <th width="1%"><?php echo HTMLHelper::_('grid.checkall'); ?></th>
-                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_CODE', 'a.code', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_DATE', 'a.datetime', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th width="85%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_LABEL_STATUS', 'a.status', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th width="5%"><?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
-                    <th width="1%"><?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_FIELD_CODE', 'a.code', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="10%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_FIELD_DATE', 'a.datetime', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+					<th width="20%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_FIELD_STATUS', 'a.status_title', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+                    <th width="20%"><?php echo HTMLHelper::_('searchtools.sort', 'COM_JTRAX_FIELD_DETAILS', 'a.details', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+					<th width="45%"><?php echo Text::_('COM_JTRAX_FIELD_NOTES'); ?></th>
+					<th width="5%"><?php echo HTMLHelper::_('searchtools.sort', 'JSTATUS', 'a.published', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
+					<th width="1%"><?php echo HTMLHelper::_('searchtools.sort', 'JGRID_HEADING_ID', 'a.id', $this->state->get('list.direction'), $this->state->get('list.ordering')); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -53,12 +56,15 @@ use Joomla\CMS\HTML\HTMLHelper;
                     <tr>
                         <td><?php echo HTMLHelper::_('grid.id', $i, $item->id); ?></td>
                         <td>
-                            <a href="<?php echo JRoute::_('index.php?option=com_jtrax&task=jtrax.edit&id=' . (int) $item->id); ?>">
+                            <a href="<?php echo Route::_('index.php?option=com_jtrax&task=jtrax.edit&id=' . (int) $item->id); ?>">
                                 <?php echo $this->escape($item->code); ?>
                             </a>
                         </td>
                         <td><?php echo $this->escape($item->datetime); ?></td>
-                        <td><?php echo $this->escape($item->status); ?></td>
+						<!-- Status (join query needed in model for text) -->
+						<td><?php echo htmlspecialchars($item->status_title ?? '-', ENT_QUOTES, 'UTF-8'); ?></td>
+						<td><?php echo $this->escape($item->details); ?></td>
+						<td><?php echo htmlspecialchars(Joomla\CMS\HTML\Helpers\StringHelper::truncate($item->notes, 50), ENT_QUOTES, 'UTF-8'); ?></td>
                         <td><?php echo HTMLHelper::_('jgrid.published', $item->published, $i, 'jtraxes.', true, 'cb'); ?></td>
                         <td><?php echo (int) $item->id; ?></td>
                     </tr>
