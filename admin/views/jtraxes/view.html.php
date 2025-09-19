@@ -63,7 +63,7 @@ class JtraxViewJtraxes extends BaseHtmlView
         ToolbarHelper::editList('jtrax.edit');
         ToolbarHelper::publish('jtraxes.publish', 'JTOOLBAR_PUBLISH', true);
         ToolbarHelper::unpublish('jtraxes.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-        ToolbarHelper::deleteList('Are you sure?', 'jtraxes.delete', 'JTOOLBAR_DELETE');
+        ToolbarHelper::deleteList(Text::_('COM_JTRAX_DELETE_QUESTION'), 'jtraxes.delete', 'JTOOLBAR_DELETE');
 
         ToolbarHelper::preferences('com_jtrax');
     }

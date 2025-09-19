@@ -49,7 +49,7 @@ class JtraxViewStatuses extends HtmlView
         ToolbarHelper::editList('status.edit');
         ToolbarHelper::publish('statuses.publish', 'JTOOLBAR_PUBLISH', true);
         ToolbarHelper::unpublish('statuses.unpublish', 'JTOOLBAR_UNPUBLISH', true);
-        ToolbarHelper::deleteList('Are you sure?', 'statuses.delete', 'JTOOLBAR_DELETE');
+        ToolbarHelper::deleteList(Text::_('COM_JTRAX_DELETE_QUESTION'), 'statuses.delete', 'JTOOLBAR_DELETE');
         
         ToolbarHelper::preferences('com_jtrax');
     }
