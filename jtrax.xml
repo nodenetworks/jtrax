@@ -48,7 +48,7 @@
 	
 	<!-- Administration Menu Section -->
 	<administration>
-		<menu img="components/com_jtrax/assets/images/icon.gif">COM_JTRAX_MENU</menu>
+		<menu img="assets/images/icon.gif">COM_JTRAX_MENU</menu>
 		<submenu>
 			<!--
 				Note that all & must be escaped to &amp; for the file to be valid
