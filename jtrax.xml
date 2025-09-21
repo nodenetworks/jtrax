@@ -56,13 +56,11 @@
 			-->
 			<menu
 				link="option=com_jtrax"
-				view="jtrax"
 				>
 				COM_JTRAX_MENU_CODES
 			</menu>
 			<menu
 				link="option=com_jtrax&amp;view=statuses"
-				view="statuses"
 				>
 				COM_JTRAX_MENU_STATUSES
 			</menu>
@@ -91,6 +89,9 @@
 			<folder>tables</folder>
 		</files>
 	</administration>
+
+<scriptfile>script.jtrax.php</scriptfile>
+
 	<updateservers>
 		<server type="extension" priority="1" name="JTrax Update Site">http://update.nodenetworks.net/jtrax/jtraxUpdate.xml</server>
 	</updateservers>
