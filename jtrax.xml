@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <extension type="component" version="5.0" method="upgrade">
 	<name>COM_JTRAX</name>
-	<creationDate>14 September 2025</creationDate>
+	<creationDate>21 September 2025</creationDate>
 	<author>Michał Ostrykiewicz</author>
-	<authorEmail>michal@ostrykiewicz.eu</authorEmail>
-	<authorUrl></authorUrl>
+	<authorEmail>michal@nodenetworks.net</authorEmail>
+	<authorUrl>www.nodenetworks.net</authorUrl>
 	<copyright>Michał Ostrykiewicz - All rights reserved</copyright>
 	<license>GNU General Public License v2</license>
 	<version>2.0.0</version>
@@ -92,6 +92,6 @@
 		</files>
 	</administration>
 	<updateservers>
-		<server type="extension" priority="1" name="JTrax Update Site">http://update.ostrykiewicz.eu/jtrax/jtraxUpdate.xml</server>
+		<server type="extension" priority="1" name="JTrax Update Site">http://update.nodenetworks.net/jtrax/jtraxUpdate.xml</server>
 	</updateservers>
 </extension>
