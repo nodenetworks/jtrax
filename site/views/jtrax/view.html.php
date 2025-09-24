@@ -105,6 +105,11 @@ class JtraxViewJtrax extends BaseHtmlView
             }
         }
 
+        // Pass the current Itemid to the view for menu context
+        $menu = $app->getMenu();
+        $active = $menu->getActive();
+        $this->itemid = $active ? $active->id : 0;
+
         // Call parent display
         parent::display($tpl);
     }

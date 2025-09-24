@@ -64,8 +64,9 @@ if (!empty($this->statuses) && is_array($this->statuses)) {
 <?php endif; ?>
 
 <!-- Search form -->
-<form name="input" action="<?php echo Route::_('index.php?option=com_jtrax'); ?>" method="post" class="mb-3">
+<form name="input" action="<?php echo Route::_('index.php?option=com_jtrax&Itemid=' . (int) $this->itemid); ?>" method="post" class="mb-3">
     <?php echo HTMLHelper::_('form.token'); ?>
+    <input type="hidden" name="Itemid" value="<?php echo (int) $this->itemid; ?>" />
     <label for="code"><?php echo $params->get('label', Text::_('COM_JTRAX_SEARCH_LABEL')); ?></label>
     <input type="text" name="code" id="code" maxlength="31" value="<?php echo htmlspecialchars($this->searchterm ?? '', ENT_QUOTES, 'UTF-8'); ?>" class="form-control d-inline-block w-auto" />
     <input type="submit" value="<?php echo $params->get('button', Text::_('COM_JTRAX_SEARCH_BUTTON')); ?>" class="btn btn-primary" />
