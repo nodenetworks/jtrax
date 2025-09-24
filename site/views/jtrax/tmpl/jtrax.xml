@@ -3,17 +3,4 @@
 	<layout title="COM_JTRAX_JTRAX_VIEW_DEFAULT_TITLE">
 		<message>COM_JTRAX_JTRAX_VIEW_DEFAULT_DESC</message>
 	</layout>
-	<fields
-			name="request"
-			addfieldpath="/administrator/components/com_jtrax/models/fields"
-			>
-		<fieldset name="request">
-			<field
-					name="id"
-					type="jtrax"
-					label="COM_JTRAX_JTRAX_FIELD_CODE_LABEL"
-					description="COM_JTRAX_JTRAX_FIELD_CODE_DESC"
-					/>
-		</fieldset>
-	</fields>
 </metadata>
