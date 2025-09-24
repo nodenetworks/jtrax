@@ -93,6 +93,6 @@
 <scriptfile>script.jtrax.php</scriptfile>
 
 	<updateservers>
-		<server type="extension" priority="1" name="JTrax Update Site">http://update.nodenetworks.net/jtrax/jtraxUpdate.xml</server>
+		<server type="extension" priority="1" name="JTrax Update Site">https://nodenetworks.net/update/jtrax/jtraxUpdate.xml</server>
 	</updateservers>
 </extension>
