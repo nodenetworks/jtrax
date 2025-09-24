@@ -13,9 +13,9 @@ defined('_JEXEC') or die('Restricted access');
 use Joomla\CMS\Factory;
 use Joomla\CMS\MVC\Controller\BaseController;
 
-$controller = BaseController::getInstance('JTrax');
+// Use the recommended way to get the controller instance in Joomla 4/5
+$controller = Factory::getApplication()->bootComponent('com_jtrax')->getMVCFactory()->createController('Jtrax', 'site');
 
 $input = Factory::getApplication()->input;
 $controller->execute($input->getCmd('task'));
-
 $controller->redirect();
