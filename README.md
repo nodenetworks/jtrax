@@ -6,5 +6,5 @@ Presence of those fields can be disabled in the frontend so they can also be use
 
 Customer enters code on the frontend and can review current status of repair.
 
-Component is a fork of another one originally created as JTracking by Giovanni Mansillo in 2010.
+Component started as a fork of another one originally created as JTracking by Giovanni Mansillo in 2010.
 It has been modified by Michał Ostrykiewicz to be compatible with Joomla! 5 and new features were added.
